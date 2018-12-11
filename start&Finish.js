@@ -1,4 +1,5 @@
-import {cvs,ctx, createLevel2} from './game.js';
+import {ctx, createLevel, currentLvl, timer} from './game.js';
+import { saveRecord } from './records.js';
 
 export default class StartAndFinish {
     constructor(posX, posY, radius, type) {
@@ -10,7 +11,7 @@ export default class StartAndFinish {
     draw() {
         if (this.type === 'start') {
             ctx.fillStyle = 'green';
-        } else { //if it's the finish
+        } else { //if it's the exit
             ctx.fillStyle = '#00bfff';
         }
         ctx.beginPath();
@@ -20,8 +21,15 @@ export default class StartAndFinish {
     detectCollision(player) {
         if (player.radius > Math.sqrt(Math.abs(player.posX - this.posX)* Math.abs(player.posX - this.posX)
         + Math.abs(player.posY - this.posY) * Math.abs(player.posY - this.posY))) {
-            //go to next level (to do)
-            createLevel2();
+            // save time
+            timer.end = Date.now();
+            saveRecord();
+            //go to next level (to improve)
+            if (currentLvl >= 9) {
+                // to do - go to main menu
+            } else {
+                createLevel(currentLvl+1);
+            }
         }
     }
 }

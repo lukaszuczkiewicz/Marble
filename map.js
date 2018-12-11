@@ -1,4 +1,4 @@
-import {cvs, ctx} from './game.js'
+import {ctx} from './game.js'
 
 export default class Map {
     constructor(wood) {

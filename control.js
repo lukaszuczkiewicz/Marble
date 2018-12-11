@@ -1,7 +1,6 @@
 import {
-    createLevel1,
-    createLevel2,
-    update
+    createLevel,
+    update,
 } from "./game.js";
 
 export let alpha = 0,
@@ -33,6 +32,8 @@ userInterface.addEventListener('click', () => {
 //display menu
 canvas.addEventListener('click', () => {
     userInterface.classList.remove('hide');
+    //testing (to remove)
+    // gameOver();
 });
 
 
@@ -40,7 +41,7 @@ canvas.addEventListener('click', () => {
 newGameBtn.addEventListener('click', () => {
     userInterface.classList.add('hide'); //hide menu
     // start level 1
-    createLevel1();
+    createLevel(1);
     update();
 });
 selectLvlBtn.addEventListener('click', () => {
@@ -48,15 +49,14 @@ selectLvlBtn.addEventListener('click', () => {
     mainMenu.classList.add('hide');
     menuLevels.classList.remove('hide');
 });
-        // menuLevels.addEventListener('click', () => {
-        //     menuLevels.classList.add('hide');
-        //     mainMenu.classList.remove('hide');
-        // });
-        menuLevels.addEventListener('click', () => { //TESTING
-            userInterface.classList.add('hide'); //hide menu
-            createLevel2();
-            update();
+        menuLevels.addEventListener('click', () => {
+            menuLevels.classList.add('hide');
+            mainMenu.classList.remove('hide');
         });
+        // menuLevels.addEventListener('click', () => { //TESTING
+        //     userInterface.classList.add('hide'); //hide menu
+        //     createLevel(2);
+        // });
 yourRecordsBtn.addEventListener('click', () => {
     mainMenu.classList.add('hide');
     menuRecords.classList.remove('hide');
@@ -67,5 +67,3 @@ yourRecordsBtn.addEventListener('click', () => {
         });
 
 //choose levels
-// let goToLvl1 = document.querySelector('.lvl-1');
-// goToLvl1.addEventListener('click', createLevel2);

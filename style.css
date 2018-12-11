@@ -39,19 +39,24 @@ body {
     padding-bottom: 60px;
     font-size: 60px;  
 }
+.subtitle {
+    padding-bottom: 15px;
+}
 .main-menu {
     font-size: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.menu-items {
+.menu-btn {
     padding: 15px;
 }
-.menu-items:hover {
+.menu-btn:hover {
     color: #edfd08;
 }
-
+.record-name {
+    padding-right: 20px;
+}
 .hide {
     display: none;
 }
