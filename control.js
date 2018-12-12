@@ -84,5 +84,4 @@ document.addEventListener('click', (e)=> {
         //hide menu
         userInterface.classList.add('hide');
     }
-    // console.log(event.target)
 });

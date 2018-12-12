@@ -1,7 +1,8 @@
 import Ball from './ball.js';
 import Map from './map.js';
 import Hole from './hole.js';
-import StartAndFinish from './start&Finish.js';
+import Start from './start.js';
+import Exit from './exit.js';
 import {loadLocalStorage} from './localStorage.js'
 
 // GENERAL
@@ -19,7 +20,7 @@ export {
 loadLocalStorage();
 
 // LOAD LEVELS
-let player, map, currentLvl, start, finish, holes = [];
+let player, map, currentLvl, start, exit, holes = [];
 let timer = {start:0, end:0};
 //create a background for all levels
 map = new Map('wood');
@@ -30,10 +31,9 @@ function createLevel(lvlNum) {
     switch (lvlNum) {
         case 1:
             //create the start
-            start = new StartAndFinish(60, 60, 20, "start");
+            start = new Start(60, 60);
             //create the exit
-            // finish = new StartAndFinish(340, 540, 20, "exit");
-            finish = new StartAndFinish(380, 580, 20, "exit");
+            exit = new Exit(380, 580);
             //create holes
             holes = []; //clear holes from previous levels
             // for (let i = 0; i < 5; i++) { //first row
@@ -48,17 +48,17 @@ function createLevel(lvlNum) {
 
         case 2:
             //create the start
-            start = new StartAndFinish(40, 40, 20, "start");
+            start = new Start(40, 40, 20);
             //create the exit
-            finish = new StartAndFinish(360, 40, 20, "exit");
+            exit = new Exit(360, 40);
             //create holes
-            holes = []; //clear holes from previous levels
-            // for (let i = 0; i < 8; i++) { //first column
-            //     holes.push(new Hole(100, i * 60 + 30));
-            // }
-            // for (let i = 0; i < 8; i++) { //second column
-            //     holes.push(new Hole(200, i * 60 + 150));
-            // }
+            holes = [];
+            for (let i = 0; i < 8; i++) { //first column
+                holes.push(new Hole(100, i * 60 + 30));
+            }
+            for (let i = 0; i < 8; i++) { //second column
+                holes.push(new Hole(200, i * 60 + 150));
+            }
             for (let i = 0; i < 8; i++) { //third column
                 holes.push(new Hole(300, i * 60 + 30));
             }
@@ -68,9 +68,9 @@ function createLevel(lvlNum) {
 
         case 3:
             //create the start
-            start = new StartAndFinish(40, 40, 20, "start");
+            start = new Start(40, 40);
             //create the exit
-            finish = new StartAndFinish(360, 40, 20, "exit");
+            exit = new Exit(360, 40);
             //create holes
             holes = []; //clear holes from previous levels
             for (let i = 0; i < 8; i++) { //first column
@@ -84,14 +84,14 @@ function createLevel(lvlNum) {
 
 function game() {
     player.move();
-    finish.detectCollision(player);
+    exit.detectCollision(player);
     player.detectCollision();
     holes.forEach((hole) => {
         hole.isBallOver(player);
     });
     map.draw();
     start.draw();
-    finish.draw();
+    exit.draw();
     holes.forEach((el) => {
         el.draw()
     });

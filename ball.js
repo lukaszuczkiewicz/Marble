@@ -1,20 +1,12 @@
-import {cvs, ctx} from './game.js'
+import {cvs} from './game.js'
 import { beta, gamma } from './control.js';
+import Circle from './circle.js';
 
-export default class Ball {
+export default class Ball extends Circle{
     constructor(posX, posY, radius, color) {
-        this.posX = posX;
-        this.posY = posY;
-        this.radius = radius;
-        this.color = color;
+        super(posX, posY, radius, color)
         this.velocityX = 0;
         this.velocityY = 0;
-    }
-    draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.posX, this.posY, this.radius, 0, 2*Math.PI);
-        ctx.fill();
     }
     move() {        
         // acceleration x is the gamma and y is the beta value
