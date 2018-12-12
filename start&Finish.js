@@ -5,8 +5,8 @@ import {
     timer
 } from './game.js';
 import {
-    saveRecord
-} from './records.js';
+    saveRecord, unblockLevel
+} from './localStorage.js';
 
 export default class StartAndFinish {
     constructor(posX, posY, radius, type) {
@@ -31,17 +31,9 @@ export default class StartAndFinish {
             // save time
             timer.end = Date.now();
             saveRecord();
+            unblockLevel(currentLvl+1)
 
             if (currentLvl < 9) {
-                //unlock next level in level-menu and make the icon looking as active
-
-                        //to do tomorrow..............
-
-
-                document.querySelector(`.lvl-${currentLvl+1}`).classList.remove('blocked');
-
-                //show level ???what is it??? 
-
                 //go to next level (to improve)
                 createLevel(currentLvl + 1);
             } else {

@@ -2,7 +2,7 @@ import Ball from './ball.js';
 import Map from './map.js';
 import Hole from './hole.js';
 import StartAndFinish from './start&Finish.js';
-import {displayRecords} from './records.js'
+import {loadLocalStorage} from './localStorage.js'
 
 // GENERAL
 export const cvs = document.getElementById("canvas");
@@ -15,8 +15,8 @@ export {
     updateStop
 };
 
-//display user's records from local storage
-displayRecords();
+//enable user's unblocked levels and display saved records
+loadLocalStorage();
 
 // LOAD LEVELS
 let player, map, currentLvl, start, finish, holes = [];

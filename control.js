@@ -73,4 +73,16 @@ returnBtn.addEventListener('click', () => {
     update();
 });
 
-//choose levels
+//choose levels (level-selection-menu)
+
+document.addEventListener('click', (e)=> {
+    // check if an unblocked digit (in lvl-selection-menu) is clicked
+    if (e.target.classList.contains('goto-lvl') && !e.target.classList.contains('blocked')) {
+
+        createLevel(Number(e.target.dataset.num));
+        update();
+        //hide menu
+        userInterface.classList.add('hide');
+    }
+    // console.log(event.target)
+});
