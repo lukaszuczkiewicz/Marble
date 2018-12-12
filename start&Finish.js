@@ -1,5 +1,12 @@
-import {ctx, createLevel, currentLvl, timer} from './game.js';
-import { saveRecord } from './records.js';
+import {
+    ctx,
+    createLevel,
+    currentLvl,
+    timer
+} from './game.js';
+import {
+    saveRecord
+} from './records.js';
 
 export default class StartAndFinish {
     constructor(posX, posY, radius, type) {
@@ -19,16 +26,26 @@ export default class StartAndFinish {
         ctx.fill();
     }
     detectCollision(player) {
-        if (player.radius > Math.sqrt(Math.abs(player.posX - this.posX)* Math.abs(player.posX - this.posX)
-        + Math.abs(player.posY - this.posY) * Math.abs(player.posY - this.posY))) {
+        if (player.radius > Math.sqrt(Math.abs(player.posX - this.posX) * Math.abs(player.posX - this.posX) +
+                Math.abs(player.posY - this.posY) * Math.abs(player.posY - this.posY))) {
             // save time
             timer.end = Date.now();
             saveRecord();
-            //go to next level (to improve)
-            if (currentLvl >= 9) {
-                // to do - go to main menu
+
+            if (currentLvl < 9) {
+                //unlock next level in level-menu and make the icon looking as active
+
+                        //to do tomorrow..............
+
+
+                document.querySelector(`.lvl-${currentLvl+1}`).classList.remove('blocked');
+
+                //show level ???what is it??? 
+
+                //go to next level (to improve)
+                createLevel(currentLvl + 1);
             } else {
-                createLevel(currentLvl+1);
+                // to do - go to main menu
             }
         }
     }

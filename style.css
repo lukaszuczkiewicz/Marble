@@ -34,6 +34,13 @@ body {
     display: flex;
     justify-content: center;
 }
+.menu-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 .game-title {
     padding-top: 40px;
     padding-bottom: 60px;
@@ -59,4 +66,23 @@ body {
 }
 .hide {
     display: none;
+}
+.blocked {
+    color: rgb(158, 158, 158);
+}
+.flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+.flex-wrap li {
+    font-size: 60px;
+    padding: 5px 16px;
+}
+.return-btn {
+    font-size: 46px;
+    padding: 20px;
+    margin-top: 30px;
+    font-family: 'Bungee', cursive;
 }

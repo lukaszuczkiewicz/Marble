@@ -11,10 +11,11 @@ export {
     createLevel,
     currentLvl,
     timer,
-    update
+    update,
+    updateStop
 };
 
-//local storage
+//display user's records from local storage
 displayRecords();
 
 // LOAD LEVELS
@@ -98,6 +99,7 @@ function game() {
 }
 
 // NEW FRAME CREATOR
+let gameLoop; //testing
 let timeCounter = 0;
 let lastTime = 0
 let update = (time = 0) => {
@@ -110,5 +112,13 @@ let update = (time = 0) => {
         game();
         timeCounter = 0;
     }
-    requestAnimationFrame(update);
+    gameLoop = requestAnimationFrame(update);
 }
+//pause game
+let updateStop = ()=> {
+    cancelAnimationFrame(gameLoop);
+}
+
+// function unblockLevel() {
+
+// }

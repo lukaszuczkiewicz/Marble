@@ -17,23 +17,26 @@
         <div class="user-interface">
             <div class="menu-container">
                 <h2 class="game-title">MARBLE</h2>
-                <ul class="main-menu">
-                    <li class="menu-btn" id="new-game">new game</li>
-                    <li class="menu-btn" id="select-level">select level</li>
-                    <li class="menu-btn" id="your-records">your records</li>
-                </ul>
+                <div class="main-menu">
+                    <ul>
+                        <li class="menu-btn" id="new-game">new game</li>
+                        <li class="menu-btn" id="select-level">select level</li>
+                        <li class="menu-btn" id="your-records">your records</li>
+                    </ul>
+                    <button class="return-btn hide">RETURN</button>
+                </div>
                 <div class="menu-levels hide">
                     <h3 class="subtitle">Select a level</h3>
-                    <ul>
+                    <ul class="flex-wrap">
                         <li class="lvl-1">1</li>
-                        <li class="lvl-2">2</li>
-                        <li class="lvl-3">3</li>
-                        <li class="lvl-4">4</li>
-                        <li class="lvl-5">5</li>
-                        <li class="lvl-6">6</li>
-                        <li class="lvl-7">7</li>
-                        <li class="lvl-8">8</li>
-                        <li class="lvl-9">9</li>
+                        <li class="lvl-2 blocked">2</li>
+                        <li class="lvl-3 blocked">3</li>
+                        <li class="lvl-4 blocked">4</li>
+                        <li class="lvl-5 blocked">5</li>
+                        <li class="lvl-6 blocked">6</li>
+                        <li class="lvl-7 blocked">7</li>
+                        <li class="lvl-8 blocked">8</li>
+                        <li class="lvl-9 blocked">9</li>
                     </ul>
                 </div>
                 <div class="menu-records hide">

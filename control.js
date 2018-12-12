@@ -1,6 +1,7 @@
 import {
     createLevel,
     update,
+    updateStop,
 } from "./game.js";
 
 export let alpha = 0,
@@ -17,12 +18,13 @@ function getOrientation(event) {
 // DOM elements
 let canvas = document.querySelector('.canvas');
 let mainMenu = document.querySelector('.main-menu');
-let userInterface = document.querySelector('.user-interface'); //should i delete it?
+let userInterface = document.querySelector('.user-interface');
 let newGameBtn = document.querySelector('#new-game');
 let selectLvlBtn = document.querySelector('#select-level');
 let menuLevels = document.querySelector('.menu-levels');
 let yourRecordsBtn = document.querySelector('#your-records');
 let menuRecords = document.querySelector('.menu-records');
+let returnBtn = document.querySelector('.return-btn');
 
 //turn on fullscreen mode
 userInterface.addEventListener('click', () => {
@@ -32,16 +34,19 @@ userInterface.addEventListener('click', () => {
 //display menu
 canvas.addEventListener('click', () => {
     userInterface.classList.remove('hide');
-    //testing (to remove)
-    // gameOver();
+    //stop game loop (pause game)
+    updateStop();
+    //
+    //display return to game button
+    returnBtn.classList.remove('hide');
 });
 
-
-// MENU RECORDS
+// main menu buttons
 newGameBtn.addEventListener('click', () => {
     userInterface.classList.add('hide'); //hide menu
-    // start level 1
+    // load level 1
     createLevel(1);
+    // start game loop
     update();
 });
 selectLvlBtn.addEventListener('click', () => {
@@ -49,21 +54,23 @@ selectLvlBtn.addEventListener('click', () => {
     mainMenu.classList.add('hide');
     menuLevels.classList.remove('hide');
 });
-        menuLevels.addEventListener('click', () => {
-            menuLevels.classList.add('hide');
-            mainMenu.classList.remove('hide');
-        });
-        // menuLevels.addEventListener('click', () => { //TESTING
-        //     userInterface.classList.add('hide'); //hide menu
-        //     createLevel(2);
-        // });
+menuLevels.addEventListener('click', () => {
+    menuLevels.classList.add('hide');
+    mainMenu.classList.remove('hide');
+});
 yourRecordsBtn.addEventListener('click', () => {
     mainMenu.classList.add('hide');
     menuRecords.classList.remove('hide');
 });
-        menuRecords.addEventListener('click', () => {
-            menuRecords.classList.add('hide');
-            mainMenu.classList.remove('hide');
-        });
+menuRecords.addEventListener('click', () => {
+    menuRecords.classList.add('hide');
+    mainMenu.classList.remove('hide');
+});
+returnBtn.addEventListener('click', () => {
+    //close menu
+    userInterface.classList.add('hide');
+    // continue game loop
+    update();
+});
 
 //choose levels
