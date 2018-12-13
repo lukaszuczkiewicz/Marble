@@ -22,8 +22,10 @@ loadLocalStorage();
 // LOAD LEVELS
 let player, map, currentLvl, start, exit, holes = [];
 let timer = {start:0, end:0};
+
 //create a background for all levels
 map = new Map('wood');
+
 
 function createLevel(lvlNum) {
     currentLvl = lvlNum;
@@ -81,7 +83,6 @@ function createLevel(lvlNum) {
             break;
     }
 }
-
 function game() {
     player.move();
     exit.detectCollision(player);
@@ -98,8 +99,35 @@ function game() {
     player.draw();
 }
 
+// function gameOverAnimation() {
+//     // catchingHole.catchABall(player);
+
+//     map.draw();
+//     start.draw();
+//     exit.draw();
+//     holes.forEach((el) => {
+//         el.draw()
+//     });
+//     player.draw();
+// }
+
+// function game() {
+//     player.move();
+//     exit.detectCollision(player);
+//     player.detectCollision();
+//     holes.forEach((hole) => {
+//         hole.isBallOver(player);
+//     });
+//     map.draw();
+//     start.draw();
+//     exit.draw();
+//     holes.forEach((el) => {
+//         el.draw()
+//     });
+//     player.draw();
+// }
+
 // NEW FRAME CREATOR
-let gameLoop; //testing
 let timeCounter = 0;
 let lastTime = 0
 let update = (time = 0) => {
@@ -112,13 +140,9 @@ let update = (time = 0) => {
         game();
         timeCounter = 0;
     }
-    gameLoop = requestAnimationFrame(update);
+    update = requestAnimationFrame(update);
 }
 //pause game
 let updateStop = ()=> {
-    cancelAnimationFrame(gameLoop);
+    cancelAnimationFrame(update);
 }
-
-// function unblockLevel() {
-
-// }

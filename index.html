@@ -16,7 +16,7 @@
         <canvas width="400" height="600" id="canvas" class="canvas"></canvas>
         <div class="user-interface">
             <div class="menu-container">
-                <h2 class="game-title">MARBLE</h2>
+                <h1 class="game-title">MARBLE</h1>
                 <div class="main-menu">
                     <ul>
                         <li class="menu-btn" id="new-game">new game</li>
@@ -26,7 +26,7 @@
                     <button class="return-btn hide">RETURN</button>
                 </div>
                 <div class="menu-levels hide">
-                    <h3 class="subtitle">Select a level</h3>
+                    <h2 class="subtitle">Select a level</h2>
                     <ul class="flex-wrap">
                         <li data-num="1" class="lvl-1 goto-lvl">1</li>
                         <li data-num="2" class="lvl-2 goto-lvl blocked">2</li>
@@ -40,7 +40,7 @@
                     </ul>
                 </div>
                 <div class="menu-records hide">
-                    <h3 class="subtitle">The best runs</h3>
+                    <h2 class="subtitle">The best runs</h2>
                     <ol>
                         <li><span class="record-name">level 1</span><span class="record-val record-lvl-1">---</span></li>
                         <li><span class="record-name">level 2</span><span class="record-val record-lvl-2">---</span></li>
@@ -52,6 +52,13 @@
                         <li><span class="record-name">level 8</span><span class="record-val record-lvl-8">---</span></li>
                         <li><span class="record-name">level 9</span><span class="record-val record-lvl-9">---</span></li>
                     </ol>
+                    <p>Tap the screen to return</p>
+                </div>
+                <div class="you-win--window hide">
+                    <h2 class="subtitle">Congratulations!</h2>
+                    <p>You completed level <span class="display-lvl-num"></span>.</p>
+                    <p>It took <span class="display-current-time"></span>s.</p>
+                    <p>Tap the screen to continue</p>
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import Circle from './circle.js';
-import {createLevel, currentLvl, timer} from './game.js';
+import {createLevel, currentLvl, timer, updateStop} from './game.js';
 import {saveRecord, unblockLevel} from './localStorage.js';
+import { displayYouWinWindow } from './control.js';
 
 export default class Exit extends Circle{
     constructor(posX, posY, radius=20, color='orange') {
@@ -14,13 +15,9 @@ export default class Exit extends Circle{
             timer.end = Date.now();
             saveRecord();
             unblockLevel(currentLvl+1)
-    
-            if (currentLvl < 9) {
-                //go to next level (to improve)
-                createLevel(currentLvl + 1);
-            } else {
-                // to do - go to main menu
-            }
+            //display you win btn
+            updateStop();
+            displayYouWinWindow();
         }
     }
 }
