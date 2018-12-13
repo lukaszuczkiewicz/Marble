@@ -3,25 +3,27 @@ import Map from './map.js';
 import Hole from './hole.js';
 import Start from './start.js';
 import Exit from './exit.js';
-import {loadLocalStorage} from './localStorage.js'
+import {loadLocalStorage, isItARecord, saveInLocalStorage, updateRecordInBestRuns} from './localStorage.js'
+import {goToYouWinWindow, updateYouWinWindow} from './control.js';
 
 // GENERAL
 export const cvs = document.getElementById("canvas");
 export const ctx = cvs.getContext("2d");
 export {
+    calculateTime,
     createLevel,
     currentLvl,
-    timer,
+    unblockLevel,
     update,
-    updateStop
+    updateStop,
+    win
 };
 
 //enable user's unblocked levels and display saved records
 loadLocalStorage();
 
 // LOAD LEVELS
-let player, map, currentLvl, start, exit, holes = [];
-let timer = {start:0, end:0};
+let player, map, currentLvl, start, exit, timeStart, holes = [];
 
 //create a background for all levels
 map = new Map('wood');
@@ -29,7 +31,7 @@ map = new Map('wood');
 
 function createLevel(lvlNum) {
     currentLvl = lvlNum;
-    timer.start = Date.now(); //set timer
+    timeStart = Date.now(); //save starting time
     switch (lvlNum) {
         case 1:
             //create the start
@@ -69,16 +71,12 @@ function createLevel(lvlNum) {
             break;
 
         case 3:
-            //create the start
             start = new Start(40, 40);
-            //create the exit
             exit = new Exit(360, 40);
-            //create holes
-            holes = []; //clear holes from previous levels
+            holes = [];
             for (let i = 0; i < 8; i++) { //first column
                 holes.push(new Hole(100, i * 60 + 30));
             }
-            // create the player
             player = new Ball(start.posX, start.posY, 20, "white");
             break;
     }
@@ -99,38 +97,11 @@ function game() {
     player.draw();
 }
 
-// function gameOverAnimation() {
-//     // catchingHole.catchABall(player);
-
-//     map.draw();
-//     start.draw();
-//     exit.draw();
-//     holes.forEach((el) => {
-//         el.draw()
-//     });
-//     player.draw();
-// }
-
-// function game() {
-//     player.move();
-//     exit.detectCollision(player);
-//     player.detectCollision();
-//     holes.forEach((hole) => {
-//         hole.isBallOver(player);
-//     });
-//     map.draw();
-//     start.draw();
-//     exit.draw();
-//     holes.forEach((el) => {
-//         el.draw()
-//     });
-//     player.draw();
-// }
-
 // NEW FRAME CREATOR
+let gameLoop;
 let timeCounter = 0;
 let lastTime = 0
-let update = (time = 0) => {
+function update(time = 0) {
     const deltaTime = time - lastTime;
     lastTime = time;
 
@@ -140,9 +111,35 @@ let update = (time = 0) => {
         game();
         timeCounter = 0;
     }
-    update = requestAnimationFrame(update);
+    gameLoop = requestAnimationFrame(update);
 }
 //pause game
-let updateStop = ()=> {
-    cancelAnimationFrame(update);
+function updateStop() {
+    cancelAnimationFrame(gameLoop);
+}
+
+//timer
+function calculateTime() {
+    //calculate and convert from milliseconds to seconds
+    return ((Date.now() - timeStart) / 1000).toFixed(2);
+}
+
+function unblockLevel(lvlNum) {
+    // unblock the next level in level-selector-menu
+    if (lvlNum <= 9) {
+        document.querySelector(`.lvl-${lvlNum}`).classList.remove('blocked');
+    }
+}
+function win() {
+    updateStop();
+    const time = calculateTime();
+    unblockLevel(currentLvl+1);
+    if (isItARecord(currentLvl, time)) {
+        // save a new time to local storage
+        saveInLocalStorage(currentLvl, time);
+        // update the value in record-menu (html file)
+        updateRecordInBestRuns(currentLvl);
+    }
+    updateYouWinWindow(currentLvl, time);
+    goToYouWinWindow();
 }

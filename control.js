@@ -5,11 +5,11 @@ import {
     updateStop,
 } from "./game.js";
 
-export let alpha = 0,
-    beta = 0,
+export let beta = 0,
     gamma = 0;
 export {
-    displayYouWinWindow
+    goToYouWinWindow,
+    updateYouWinWindow
 };
 
 // gyroscope
@@ -21,16 +21,19 @@ function getOrientation(event) {
 }
 
 // DOM elements
-let canvas = document.querySelector('.canvas');
-let mainMenu = document.querySelector('.main-menu');
-let userInterface = document.querySelector('.user-interface');
-let newGameBtn = document.querySelector('#new-game');
-let selectLvlBtn = document.querySelector('#select-level');
-let menuLevels = document.querySelector('.menu-levels');
-let yourRecordsBtn = document.querySelector('#your-records');
-let menuRecords = document.querySelector('.menu-records');
-let returnBtn = document.querySelector('.return-btn');
-let youWinWindow = document.querySelector('.you-win--window');
+const canvas = document.querySelector('.canvas');
+const mainMenu = document.querySelector('.main-menu');
+const userInterface = document.querySelector('.user-interface');
+const newGameBtn = document.querySelector('#new-game');
+const selectLvlBtn = document.querySelector('#select-level');
+const menuLevels = document.querySelector('.menu-levels');
+const yourRecordsBtn = document.querySelector('#your-records');
+const menuRecords = document.querySelector('.menu-records');
+const returnBtn = document.querySelector('.return-btn');
+const youWinWindow = document.querySelector('.you-win--window');
+const youWinLvlNum = document.querySelector('.you-win--lvl-num');
+const youWinTime = document.querySelector('.you-win--time');
+
 
 //TOUCH EVENTS
 canvas.addEventListener('click', displayMainMenu);
@@ -39,23 +42,26 @@ returnBtn.addEventListener('click', returnToGame);
 selectLvlBtn.addEventListener('click', goToLevelMenu);
 youWinWindow.addEventListener('click', hideYouWinWindow);
 
+//main menu
 function displayMainMenu() {
     updateStop(); //stop game loop (pause game)
-    console.log('aaaaa');
     userInterface.classList.remove('hide'); //show UI
     mainMenu.classList.remove('hide'); //display main menu buttons
     returnBtn.classList.remove('hide'); //display return to game button
 }
 
-function displayYouWinWindow() {
+// main menu options
+function newGame() {
+    userInterface.classList.add('hide'); //hide UI
+    createLevel(1); // load level 1
+    update(); // start game loop
+}
+//you win window
+function goToYouWinWindow() {
+    updateStop(); //stop game loop (pause game)
     userInterface.classList.remove('hide'); //show UI
     mainMenu.classList.add('hide'); //hide main menu
     youWinWindow.classList.remove('hide'); //display 
-}
-
-function goToLevelMenu() {
-    mainMenu.classList.add('hide'); //hide main menu
-    menuLevels.classList.remove('hide'); //display level-selection-menu
 }
 
 function hideYouWinWindow() {
@@ -71,10 +77,14 @@ function hideYouWinWindow() {
     }
 }
 
-function newGame() {
-    userInterface.classList.add('hide'); //hide UI
-    createLevel(1); // load level 1
-    update(); // start game loop
+function updateYouWinWindow(currentLvl, time) {
+    youWinLvlNum.textContent = currentLvl.toString();
+    youWinTime.textContent = time.toString();
+}
+
+function goToLevelMenu() {
+    mainMenu.classList.add('hide'); //hide main menu
+    menuLevels.classList.remove('hide'); //display level-selection-menu
 }
 
 function returnToGame() {
@@ -95,7 +105,6 @@ menuRecords.addEventListener('click', () => {
 });
 
 //choose levels (level-selection-menu)
-
 document.addEventListener('click', (e) => {
     // check if an unblocked digit (in lvl-selection-menu) is clicked
     if (e.target.classList.contains('goto-lvl') && !e.target.classList.contains('blocked')) {
@@ -106,8 +115,6 @@ document.addEventListener('click', (e) => {
         userInterface.classList.add('hide');
     }
 });
-
-
 
 //turn on fullscreen mode
 userInterface.addEventListener('click', () => {
