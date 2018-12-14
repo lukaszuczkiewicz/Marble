@@ -141,13 +141,14 @@ function win() {
         updateStop();
         const time = calculateTime();
         unblockLevel(currentLvl + 1);
-        if (isItARecord(currentLvl, time)) {
+        let isItBestRun = isItARecord(currentLvl, time);
+        if (isItBestRun) {
             // save a new time to local storage
             saveInLocalStorage(currentLvl, time);
             // update the value in record-menu (html file)
             updateRecordInBestRuns(currentLvl);
         }
-        updateYouWinWindow(currentLvl, time);
+        updateYouWinWindow(currentLvl, time, isItBestRun);
         goToYouWinWindow();
     }, 0);
 }

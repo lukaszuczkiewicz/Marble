@@ -33,6 +33,7 @@ const returnBtn = document.querySelector('.return-btn');
 const youWinWindow = document.querySelector('.you-win--window');
 const youWinLvlNum = document.querySelector('.you-win--lvl-num');
 const youWinTime = document.querySelector('.you-win--time');
+const youWinBestTime = document.querySelector('.you-win--best-run');
 
 
 //TOUCH EVENTS
@@ -77,9 +78,15 @@ function hideYouWinWindow() {
     }
 }
 
-function updateYouWinWindow(currentLvl, time) {
+function updateYouWinWindow(currentLvl, time, isItBestRun) {
     youWinLvlNum.textContent = currentLvl.toString();
     youWinTime.textContent = time.toString();
+    if (isItBestRun) {
+        youWinBestTime.textContent = "This is your new record!";
+    } else {
+        youWinBestTime.textContent = `Your best run was:
+        ${document.querySelector(`.record-lvl-${currentLvl}`).textContent} s.`;
+    }
 }
 
 function goToLevelMenu() {
