@@ -55,7 +55,6 @@ function displayMainMenu() {
 function newGame() {
     userInterface.classList.add('hide'); //hide UI
     createLevel(1); // load level 1
-    update(); // start game loop
 }
 //you win window
 function goToYouWinWindow() {
@@ -68,13 +67,10 @@ function goToYouWinWindow() {
 function hideYouWinWindow() {
     userInterface.classList.add('hide');
     youWinWindow.classList.add('hide');
-    if (currentLvl < 9) { //check if there is next level
-        //go to next level
-        createLevel(currentLvl + 1);
-        update();
-    } else {
-        //go to main menu
-        displayMainMenu();
+    if (currentLvl < 9) { //check if there is next level  
+        createLevel(currentLvl + 1); //go to next level
+    } else {    
+        displayMainMenu(); //go to main menu
     }
 }
 
@@ -117,7 +113,6 @@ document.addEventListener('click', (e) => {
     if (e.target.classList.contains('goto-lvl') && !e.target.classList.contains('blocked')) {
 
         createLevel(Number(e.target.dataset.num));
-        update();
         //hide menu
         userInterface.classList.add('hide');
     }

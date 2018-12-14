@@ -39,7 +39,6 @@ map = new Map('wood');
 
 function createLevel(lvlNum) {
     currentLvl = lvlNum;
-    timeStart = Date.now(); //save starting time
     switch (lvlNum) {
         case 1:
             start = new Start(60, 60); //create the start
@@ -85,6 +84,8 @@ function createLevel(lvlNum) {
             holes = [];
             player = new Ball(100, 100, 20, "white");
     }
+    timeStart = Date.now(); //save starting time
+    update();
 }
 
 function game() {
@@ -136,8 +137,8 @@ function unblockLevel(lvlNum) {
     }
 }
 
-function win() {
-    setTimeout(() => { //setTimeot used as a hack (I could't get f. updateStop in next line to work)
+async function win() {
+    await setTimeout(() => { //setTimeot used as a hack (I could't get f. updateStop in next line to work)
         updateStop();
         const time = calculateTime();
         unblockLevel(currentLvl + 1);
