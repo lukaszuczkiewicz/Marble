@@ -13,12 +13,11 @@ body {
     background: black;
 }
 .canvas {
-    /* display: block; */
     border: .2em white solid;
     max-width: 100%;
     box-sizing: border-box;
 }
-
+/* MENU */
 .user-interface {
     position: absolute;
     top: 0px;
@@ -58,17 +57,23 @@ body {
 .menu-btn {
     padding: 15px;
 }
-.menu-btn:hover {
+.menu-btn:active {
     color: #edfd08;
+}
+.goto-lvl:active {
+    color: #edfd08;    
+}
+.blocked {
+    color: #9e9e9e;
+}
+.blocked:active {
+    color: #9e9e9e;    
 }
 .record-name {
     padding-right: 20px;
 }
 .hide {
     display: none;
-}
-.blocked {
-    color: rgb(158, 158, 158);
 }
 .flex-wrap {
     display: flex;
