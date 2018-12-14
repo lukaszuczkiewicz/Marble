@@ -42,10 +42,8 @@ function createLevel(lvlNum) {
     timeStart = Date.now(); //save starting time
     switch (lvlNum) {
         case 1:
-            //create the start
-            start = new Start(60, 60);
-            //create the exit
-            exit = new Exit(380, 580);
+            start = new Start(60, 60); //create the start
+            exit = new Exit(380, 580); //create the exit
             //create holes
             holes = []; //clear holes from previous levels
             // for (let i = 0; i < 5; i++) { //first row
@@ -58,7 +56,7 @@ function createLevel(lvlNum) {
             break;
 
         case 2:
-            start = new Start(40, 40, 20); //create the start            
+            start = new Start(40, 40); //create the start            
             exit = new Exit(360, 40); //create the exit            
             holes = []; //create holes
             for (let i = 0; i < 8; i++) { //first column
@@ -77,11 +75,15 @@ function createLevel(lvlNum) {
             start = new Start(40, 40);
             exit = new Exit(360, 40);
             holes = [];
-            for (let i = 0; i < 8; i++) { //first column
-                holes.push(new Hole(100, i * 60 + 30));
-            }
+            // holes.push(new Hole(40, 40));
+            holes.push(new Hole(120, 60));
+            holes.push(new Hole(50, 110));
+
             player = new Ball(start.posX, start.posY, 20, "white");
             break;
+        default:
+            holes = [];
+            player = new Ball(100, 100, 20, "white");
     }
 }
 
