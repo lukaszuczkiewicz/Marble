@@ -60,17 +60,17 @@ function createLevel(lvlNum) {
             break;
 
         case 2:
-            start = new Start(40, 40); //create the start            
-            exit = new Exit(360, 40); //create the exit            
+            start = new Start(60, 60); //create the start            
+            exit = new Exit(cvsWidth-60, 60); //create the exit            
             holes = []; //create holes
-            for (let i = 0; i < 8; i++) { //first column
-                holes.push(new Hole(100, i * 60 + 30));
+            for (let i = 0; i < 10; i++) { //first column
+                holes.push(new Hole(180, i * 100 + 60));
             }
-            for (let i = 0; i < 8; i++) { //second column
-                holes.push(new Hole(200, i * 60 + 150));
+            for (let i = 0; i < 10; i++) { //second column
+                holes.push(new Hole(360, i * 100 + 320));
             }
-            for (let i = 0; i < 8; i++) { //third column
-                holes.push(new Hole(300, i * 60 + 30));
+            for (let i = 0; i < 10; i++) { //third column
+                holes.push(new Hole(540, i * 100 + 60));
             }
             player = new Ball(start.posX, start.posY); //create the player
             break;
@@ -157,14 +157,3 @@ function win() {
         goToYouWinWindow();
     }, 0);
 }
-
-// const lista = [1,1,1,1,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
-// function a() {
-//     for (let i = 0; i< lista.length; i++) {
-//         console.log(lista[i]);
-//         if (lista[i] === 5) {
-//             return;
-//         }
-//     };
-// }
-// a();
