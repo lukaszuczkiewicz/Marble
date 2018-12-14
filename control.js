@@ -2,7 +2,7 @@ import {
     createLevel,
     currentLvl,
     update,
-    updateStop,
+    updateStop
 } from "./game.js";
 
 export let beta = 0,

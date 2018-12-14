@@ -3,8 +3,16 @@ import Map from './map.js';
 import Hole from './hole.js';
 import Start from './start.js';
 import Exit from './exit.js';
-import {loadLocalStorage, isItARecord, saveInLocalStorage, updateRecordInBestRuns} from './localStorage.js'
-import {goToYouWinWindow, updateYouWinWindow} from './control.js';
+import {
+    loadLocalStorage,
+    isItARecord,
+    saveInLocalStorage,
+    updateRecordInBestRuns
+} from './localStorage.js'
+import {
+    goToYouWinWindow,
+    updateYouWinWindow
+} from './control.js';
 
 // GENERAL
 export const cvs = document.getElementById("canvas");
@@ -43,20 +51,16 @@ function createLevel(lvlNum) {
             // for (let i = 0; i < 5; i++) { //first row
             //     holes.push(new Hole(i * 60 + 35, 180));
             // }
-            // for (let i = 0; i < 5; i++) { //second row
-            //     holes.push(new Hole(i * 60 + 125, 410));
-            // }
-            // create the player
-            player = new Ball(start.posX, start.posY, 20, "white");
+            for (let i = 0; i < 5; i++) { //second row
+                holes.push(new Hole(i * 60 + 125, 410));
+            }
+            player = new Ball(start.posX, start.posY, 20, "white"); // create the player
             break;
 
         case 2:
-            //create the start
-            start = new Start(40, 40, 20);
-            //create the exit
-            exit = new Exit(360, 40);
-            //create holes
-            holes = [];
+            start = new Start(40, 40, 20); //create the start            
+            exit = new Exit(360, 40); //create the exit            
+            holes = []; //create holes
             for (let i = 0; i < 8; i++) { //first column
                 holes.push(new Hole(100, i * 60 + 30));
             }
@@ -66,8 +70,7 @@ function createLevel(lvlNum) {
             for (let i = 0; i < 8; i++) { //third column
                 holes.push(new Hole(300, i * 60 + 30));
             }
-            // create the player
-            player = new Ball(start.posX, start.posY, 20, "white");
+            player = new Ball(start.posX, start.posY, 20, "white"); //create the player
             break;
 
         case 3:
@@ -81,6 +84,7 @@ function createLevel(lvlNum) {
             break;
     }
 }
+
 function game() {
     player.move();
     exit.detectCollision(player);
@@ -101,10 +105,9 @@ function game() {
 let gameLoop;
 let timeCounter = 0;
 let lastTime = 0
-function update(time = 0) {
+let update = (time = 0) => {
     const deltaTime = time - lastTime;
     lastTime = time;
-
     timeCounter += deltaTime;
     // check if enough time passed to display new frame
     if (timeCounter > 33) {
@@ -113,7 +116,7 @@ function update(time = 0) {
     }
     gameLoop = requestAnimationFrame(update);
 }
-//pause game
+//pause game loop
 function updateStop() {
     cancelAnimationFrame(gameLoop);
 }
@@ -130,16 +133,19 @@ function unblockLevel(lvlNum) {
         document.querySelector(`.lvl-${lvlNum}`).classList.remove('blocked');
     }
 }
+
 function win() {
-    updateStop();
-    const time = calculateTime();
-    unblockLevel(currentLvl+1);
-    if (isItARecord(currentLvl, time)) {
-        // save a new time to local storage
-        saveInLocalStorage(currentLvl, time);
-        // update the value in record-menu (html file)
-        updateRecordInBestRuns(currentLvl);
-    }
-    updateYouWinWindow(currentLvl, time);
-    goToYouWinWindow();
+    setTimeout(() => { //setTimeot used as a hack (I could't get f. updateStop in next line to work)
+        updateStop();
+        const time = calculateTime();
+        unblockLevel(currentLvl + 1);
+        if (isItARecord(currentLvl, time)) {
+            // save a new time to local storage
+            saveInLocalStorage(currentLvl, time);
+            // update the value in record-menu (html file)
+            updateRecordInBestRuns(currentLvl);
+        }
+        updateYouWinWindow(currentLvl, time);
+        goToYouWinWindow();
+    }, 0);
 }
