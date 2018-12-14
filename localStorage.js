@@ -26,7 +26,10 @@ function updateRecordInBestRuns(lvlNum) {
 
 function isItARecord(currentLvl, time) {
     if (localStorage.getItem(`${currentLvl}`) === null || //check if there is no previous record for this lvl
-        time < Number(localStorage.getItem(`${currentLvl}`))) {}
+        time < Number(localStorage.getItem(`${currentLvl}`))) {
+            return true;
+        }
+        return false;
 }
 
 function saveInLocalStorage(currentLvl, time) {
