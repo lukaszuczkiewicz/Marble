@@ -10,7 +10,7 @@
     list-style: none;
 }
 body {
-    background: #000;
+    background: #000000;
 }
 .canvas {
     border: 2px #fff solid;
@@ -31,7 +31,8 @@ body {
     left: 0px;
     width: 100vw;
     height: 100vh;
-    background: #2b8282e7;
+    /* background: #2b8282e7; */
+    background: rgba(43, 130, 130, 0.849);
     box-sizing: border-box;
     font-family: 'Bungee', cursive;
     color: white;

@@ -5,7 +5,7 @@ import {
 import Circle from './circle.js';
 
 export default class Hole extends Circle {
-    constructor(posX, posY, radius = 20, color = 'black') {
+    constructor(posX, posY, radius = 40, color = 'black') {
         super(posX, posY, radius, color)
     }
 

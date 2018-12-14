@@ -27,6 +27,10 @@ export {
     win
 };
 
+// canvas
+const cvsWidth = cvs.width;
+const cvsHeight = cvs.height;
+
 //enable user's unblocked levels and display saved records
 loadLocalStorage();
 
@@ -43,16 +47,16 @@ function createLevel(lvlNum) {
     switch (lvlNum) {
         case 1:
             start = new Start(60, 60); //create the start
-            exit = new Exit(380, 580); //create the exit
+            exit = new Exit(cvsWidth-60, cvsHeight-60); //create the exit
             //create holes
             holes = []; //clear holes from previous levels
-            // for (let i = 0; i < 5; i++) { //first row
-            //     holes.push(new Hole(i * 60 + 35, 180));
-            // }
-            for (let i = 0; i < 5; i++) { //second row
-                holes.push(new Hole(i * 60 + 125, 410));
+            for (let i = 0; i < 5; i++) { //first row
+                holes.push(new Hole(i * 100 + 60, 400));
             }
-            player = new Ball(start.posX, start.posY, 20, "white"); // create the player
+            for (let i = 0; i < 5; i++) { //second row
+                holes.push(new Hole(i * 100 + 250, cvsHeight-400));
+            }
+            player = new Ball(start.posX, start.posY); // create the player
             break;
 
         case 2:
@@ -68,7 +72,7 @@ function createLevel(lvlNum) {
             for (let i = 0; i < 8; i++) { //third column
                 holes.push(new Hole(300, i * 60 + 30));
             }
-            player = new Ball(start.posX, start.posY, 20, "white"); //create the player
+            player = new Ball(start.posX, start.posY); //create the player
             break;
 
         case 3:
@@ -79,11 +83,11 @@ function createLevel(lvlNum) {
             holes.push(new Hole(120, 60));
             holes.push(new Hole(50, 110));
 
-            player = new Ball(start.posX, start.posY, 20, "white");
+            player = new Ball(start.posX, start.posY);
             break;
         default:
             holes = [];
-            player = new Ball(100, 100, 20, "white");
+            player = new Ball(100, 100);
     }
 }
 
@@ -118,6 +122,7 @@ let update = (time = 0) => {
     }
     gameLoop = requestAnimationFrame(update);
 }
+
 //pause game loop
 function updateStop() {
     cancelAnimationFrame(gameLoop);
@@ -152,3 +157,14 @@ function win() {
         goToYouWinWindow();
     }, 0);
 }
+
+// const lista = [1,1,1,1,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+// function a() {
+//     for (let i = 0; i< lista.length; i++) {
+//         console.log(lista[i]);
+//         if (lista[i] === 5) {
+//             return;
+//         }
+//     };
+// }
+// a();

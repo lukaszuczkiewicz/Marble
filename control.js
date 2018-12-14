@@ -73,8 +73,8 @@ function hideYouWinWindow() {
         createLevel(currentLvl + 1);
         update();
     } else {
-        //go to main menu
-        displayMainMenu();
+        displayMainMenu(); //go to main menu
+        returnBtn.classList.add('hide'); //hide a return button
     }
 }
 
