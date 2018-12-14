@@ -1,4 +1,8 @@
-export {Gem, gems};
+import {ctx} from './game.js';
+// import Rectangle from './rectangle.js';
+
+
+export {Gem, gemColors};
 
 class Gem {
     constructor(posX, posY, color) {
@@ -6,20 +10,23 @@ class Gem {
         this.posY = posY;
         this.color = color;
     }
+    draw() {
+        ctx.drawImage(this.color, this.posX, this.posY);
+    }
 }
 
-const gems = {
-    black = new Image(),
-    blue = new Image(),
-    green = new Image(),
-    purple = new Image(),
-    red = new Image(),
-    yellow = new Image(),
+const gemColors = {
+    black: new Image(),
+    blue: new Image(),
+    green: new Image(),
+    purple: new Image(),
+    red: new Image(),
+    yellow: new Image()
 };
 
-gems.black = 'img/Gem-Black.png';
-gems.blue = 'img/Gem-Blue.png';
-gems.green = 'img/Gem-Green.png';
-gems.purple = 'img/Gem-Purple.png';
-gems.red = 'img/Gem-Red.png';
-gems.yellow = 'img/Gem-Yellow.png';
+gemColors.black.src = 'img/Gem-Black.png';
+gemColors.blue.src = 'img/Gem-Blue.png';
+gemColors.green.src = 'img/Gem-Green.png';
+gemColors.purple.src = 'img/Gem-Purple.png';
+gemColors.red.src = 'img/Gem-Red.png';
+gemColors.yellow.src = 'img/Gem-Yellow.png';

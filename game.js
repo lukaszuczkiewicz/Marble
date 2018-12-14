@@ -3,6 +3,7 @@ import Map from './map.js';
 import Hole from './hole.js';
 import Start from './start.js';
 import Exit from './exit.js';
+import { Gem, gemColors } from './gem.js';
 import {
     loadLocalStorage,
     isItARecord,
@@ -35,65 +36,17 @@ const cvsHeight = cvs.height;
 loadLocalStorage();
 
 // LOAD LEVELS
-let player, map, currentLvl, start, exit, timeStart, holes = [];
+let player, map, currentLvl, start, exit, timeStart;
+let holes = [], gems=[], collectedGems;
 
 //create a background for all levels
 map = new Map('wood');
 
-
-function createLevel(lvlNum) {
-    currentLvl = lvlNum;
-    timeStart = Date.now(); //save starting time
-    switch (lvlNum) {
-        case 1:
-            start = new Start(60, 60); //create the start
-            exit = new Exit(cvsWidth-60, cvsHeight-60); //create the exit
-            //create holes
-            holes = []; //clear holes from previous levels
-            for (let i = 0; i < 5; i++) { //first row
-                holes.push(new Hole(i * 100 + 60, 400));
-            }
-            for (let i = 0; i < 5; i++) { //second row
-                holes.push(new Hole(i * 100 + 250, cvsHeight-400));
-            }
-            player = new Ball(start.posX, start.posY); // create the player
-            break;
-
-        case 2:
-            start = new Start(60, 60); //create the start            
-            exit = new Exit(cvsWidth-60, 60); //create the exit            
-            holes = []; //create holes
-            for (let i = 0; i < 10; i++) { //first column
-                holes.push(new Hole(180, i * 100 + 60));
-            }
-            for (let i = 0; i < 10; i++) { //second column
-                holes.push(new Hole(360, i * 100 + 320));
-            }
-            for (let i = 0; i < 10; i++) { //third column
-                holes.push(new Hole(540, i * 100 + 60));
-            }
-            player = new Ball(start.posX, start.posY); //create the player
-            break;
-
-        case 3:
-            start = new Start(40, 40);
-            exit = new Exit(360, 40);
-            holes = [];
-            // holes.push(new Hole(40, 40));
-            holes.push(new Hole(120, 60));
-            holes.push(new Hole(50, 110));
-
-            player = new Ball(start.posX, start.posY);
-            break;
-        default:
-            holes = [];
-            player = new Ball(100, 100);
-    }
-}
-
 function game() {
     player.move();
-    exit.detectCollision(player);
+    if (collectedGems === gems.length) {
+        exit.detectCollision(player);
+    }
     player.detectCollision();
     holes.forEach((hole) => {
         hole.isBallOver(player);
@@ -102,6 +55,9 @@ function game() {
     start.draw();
     exit.draw();
     holes.forEach((el) => {
+        el.draw()
+    });
+    gems.forEach((el) => {
         el.draw()
     });
     player.draw();
@@ -156,4 +112,80 @@ function win() {
         updateYouWinWindow(currentLvl, time, isItBestRun);
         goToYouWinWindow();
     }, 0);
+}
+
+
+// LEVEL DATA
+function createLevel(lvlNum) {
+    currentLvl = lvlNum;
+    timeStart = Date.now(); //save starting time
+    switch (lvlNum) {
+        case 1:
+            start = new Start(60, 60); //create the start
+            exit = new Exit(cvsWidth-60, cvsHeight-60); //create the exit
+            //create holes
+            holes = []; //clear holes from previous levels
+            for (let i = 0; i < 5; i++) { //first row
+                holes.push(new Hole(i * 100 + 60, 400));
+            }
+            for (let i = 0; i < 5; i++) { //second row
+                holes.push(new Hole(i * 100 + 250, cvsHeight-400));
+            }
+            gems = [];
+            collectedGems = 0;
+            player = new Ball(start.posX, start.posY); // create the player
+            break;
+
+        case 2:
+            start = new Start(60, 60); //create the start            
+            exit = new Exit(cvsWidth-60, 60); //create the exit            
+            holes = []; //create holes
+            for (let i = 0; i < 10; i++) { //first column
+                holes.push(new Hole(180, i * 100 + 60));
+            }
+            for (let i = 0; i < 10; i++) { //second column
+                holes.push(new Hole(360, i * 100 + 320));
+            }
+            for (let i = 0; i < 10; i++) { //third column
+                holes.push(new Hole(540, i * 100 + 60));
+            }
+            gems = [];
+            collectedGems = 0;
+            player = new Ball(start.posX, start.posY); //create the player
+            break;
+
+        case 3:
+            start = new Start(300, 60);
+            exit = new Exit(420, 60);
+            holes = [];
+            holes.push(new Hole(cvsWidth-50, 150));
+            holes.push(new Hole(360, 185));
+            holes.push(new Hole(120, 260));
+            holes.push(new Hole(555, 375));
+            holes.push(new Hole(400, 400));
+            holes.push(new Hole(250, 505));
+            holes.push(new Hole(400, 540));
+            holes.push(new Hole(45, 610));
+            holes.push(new Hole(225, 715));
+            holes.push(new Hole(600, 810));
+            holes.push(new Hole(430, 850));
+            holes.push(new Hole(cvsWidth-50, 934));
+            holes.push(new Hole(240, 1000));
+            holes.push(new Hole(100, 1100));
+            holes.push(new Hole(595, 1135));
+            holes.push(new Hole(355, 1165));
+            holes.push(new Hole(130, cvsHeight-50));
+
+            collectedGems = 0;
+            gems = [];
+            gems.push(new Gem(70,60, gemColors.yellow));
+            player = new Ball(start.posX, start.posY);
+            break;
+
+        default:
+            holes = [];
+            gems = [];
+            collectedGems = 0;
+            player = new Ball(100, 100);
+    }
 }

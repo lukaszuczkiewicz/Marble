@@ -8,8 +8,8 @@ export default class Rectangle {
         this.height = height;
         this.color = color;
     }
-    draw() {
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.posX, this.posY, this.width, this.height);
-    }
+    // draw() {
+    //     ctx.fillStyle = this.color;
+    //     ctx.fillRect(this.posX, this.posY, this.width, this.height);
+    // }
 }
