@@ -1,17 +1,29 @@
-import {ctx} from './game.js';
+import {ctx, gemsToCollect} from './game.js';
 // import Rectangle from './rectangle.js';
 
 
 export {Gem, gemColors};
 
 class Gem {
-    constructor(posX, posY, color) {
+    constructor(posX, posY, color, size = 52) {
         this.posX = posX;
         this.posY = posY;
         this.color = color;
+        this.size = size;
     }
     draw() {
         ctx.drawImage(this.color, this.posX, this.posY);
+    }
+    detectCollision(player) {
+        if (player.PosX >= this.PosX && player.PosX <= this.PosX+size &&
+            player.PosY >= this.PosY && player.PosY <= this.PosY+size) {
+
+                console.log('aaa');
+                // console.log(gemsToCollect);
+                // delete from gems to collect
+                // gemsToCollect.filter(this);//////////////////////////////
+
+            }
     }
 }
 
