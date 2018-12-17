@@ -1,10 +1,10 @@
-import {ctx, gemsToCollect} from './game.js';
+import {ctx} from './game.js';
 // import Rectangle from './rectangle.js';
 
 
 export {Gem, gemColors, gemToDelete};
 
-class Gem {
+class Gem{
     constructor(posX, posY, color, size = 52) {
         this.posX = posX;
         this.posY = posY;
@@ -16,7 +16,6 @@ class Gem {
     }
     detectCollecting(ballX, ballY) {
 
-        // if (ballX > this.posX && ballX < this.posX + this.size) {
         if (ballX > this.posX && ballX < this.posX+this.size && ballY > this.posY && ballY < this.posY+this.size) {
 
             gemToDelete = this;

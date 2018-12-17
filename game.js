@@ -3,6 +3,7 @@ import Map from './map.js';
 import Hole from './hole.js';
 import Start from './start.js';
 import Exit from './exit.js';
+import MovingFloor from './movingFloor.js';
 import { Gem, gemColors, gemToDelete } from './gem.js';
 import {
     loadLocalStorage,
@@ -38,7 +39,7 @@ loadLocalStorage();
 
 // LOAD LEVELS
 let player, map, currentLvl, start, exit, timeStart;
-let holes = [], gemsToCollect=[];
+let holes = [], gemsToCollect=[], movingFloors = [];
 
 //create a background for all levels
 map = new Map('wood');
@@ -56,11 +57,14 @@ function game() {
         gem.detectCollecting(player.posX, player.posY);
     });
     if (gemToDelete !== null) { //to refractor
-        console.log(gemToDelete)
+        // console.log(gemToDelete) //it logs forever after collecting the first gem
         gemsToCollect = gemsToCollect.filter((el)=>el !== gemToDelete);
     }
     // draw functions
     map.draw();
+    movingFloors.forEach((floor) => {
+        floor.draw();
+    });
     start.draw();
     exit.draw();
     holes.forEach((el) => {
@@ -128,26 +132,25 @@ function win() {
 function createLevel(lvlNum) {
     currentLvl = lvlNum;
     timeStart = Date.now(); //save starting time
+    movingFloors = []; //clear moving floors from previous levels
+    holes = []; //clear holes from previous levels
+    gemsToCollect = []; //clear gems from previous levels
     switch (lvlNum) {
         case 1:
             start = new Start(60, 60); //create the start
             exit = new Exit(cvsWidth-60, cvsHeight-60); //create the exit
             //create holes
-            holes = []; //clear holes from previous levels
             for (let i = 0; i < 5; i++) { //first row
                 holes.push(new Hole(i * 100 + 60, 400));
             }
             for (let i = 0; i < 5; i++) { //second row
                 holes.push(new Hole(i * 100 + 250, cvsHeight-400));
             }
-            gemsToCollect = [];
-            player = new Ball(start.posX, start.posY); // create the player
             break;
 
         case 2:
             start = new Start(60, 60); //create the start            
-            exit = new Exit(cvsWidth-60, 60); //create the exit            
-            holes = []; //create holes
+            exit = new Exit(cvsWidth-60, 60); //create the exit
             for (let i = 0; i < 10; i++) { //first column
                 holes.push(new Hole(180, i * 100 + 60));
             }
@@ -157,14 +160,11 @@ function createLevel(lvlNum) {
             for (let i = 0; i < 10; i++) { //third column
                 holes.push(new Hole(540, i * 100 + 60));
             }
-            gemsToCollect = [];
-            player = new Ball(start.posX, start.posY); //create the player
             break;
 
         case 3:
             start = new Start(60, 60);
             exit = new Exit(200, 60);
-            holes = [];
             holes.push(new Hole(cvsWidth-50, 150));
             holes.push(new Hole(360, 185));
             holes.push(new Hole(120, 260));
@@ -191,9 +191,18 @@ function createLevel(lvlNum) {
                 new Gem(210,1100, gemColors.yellow),
                 new Gem(cvsWidth-100,cvsHeight-100, gemColors.black)
             ];
+            break;
 
-            player = new Ball(start.posX, start.posY);
-            console.log(gemsToCollect);
+        case 4:
+            movingFloors.push(new MovingFloor(100, 800, 200, 100, 'x', -2, 0, 0));
+            start = new Start(60, 60);
+            exit = new Exit(cvsWidth-60, cvsHeight-60)
+            holes.push(new Hole(360, 185));
+            holes.push(new Hole(250, 505));
+            holes.push(new Hole(cvsWidth-50, 934));
+            holes.push(new Hole(240, 1000));
+            holes.push(new Hole(355, 1165));
+
             break;
 
         default:
@@ -201,19 +210,5 @@ function createLevel(lvlNum) {
             // player = new Ball(100, 100);
 
     }
+    player = new Ball(start.posX, start.posY); //create the player
 }
-
-
-// let lista = [1,2,3,4,5,6,7,8,9,10];
-
-// lista.forEach((el)=> {
-//     if (el === 5) {
-//         lista = lista.filter(checking);
-//     }
-// })
-
-// function checking(el) {
-//     return el===5;
-// }
-
-// console.log(lista);
