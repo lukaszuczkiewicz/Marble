@@ -1,13 +1,8 @@
-import { cvsWidth, cvsHeight } from "./game";
+import { cvsWidth, cvsHeight } from "./game.js";
 import Hole from './hole.js';
-// import {
-//     createLevel,
-//     currentLvl
-// } from './game.js';
-// import Circle from './circle.js';
 
 export default class MovingHole extends Hole {
-    constructor(posX, posY, radius = 40, color = 'black', speedX=0, speedY=0, minPosX = 0, maxPosX = cvsWidth, minPosY = 0, maxPosY = cvsHeight) {
+    constructor(posX, posY, speedX=0, speedY=0, minPosX = 0, maxPosX = cvsWidth, minPosY = 0, maxPosY = cvsHeight, radius = 40, color = 'black',) {
         super(posX, posY, radius, color)
         this.speedX = speedX;
         this.speedY = speedY;

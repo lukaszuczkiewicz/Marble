@@ -153,7 +153,7 @@ function createLevel(lvlNum) {
     movingHoles = []; //clear moving holes from previous levels
     gemsToCollect = []; //clear gems from previous levels
     switch (lvlNum) {
-        case 5: //level 1
+        case 1: //level 1
             start = new Start(60, 60); //create the start
             exit = new Exit(cvsWidth-60, cvsHeight-60); //create the exit
             //create holes
@@ -238,17 +238,36 @@ function createLevel(lvlNum) {
             ];
             break;
 
-            case 1:
-                start = new Start(60, 60);
-                exit = new Exit(cvsWidth-60, 980);
+            case 5:
+                start = new Start(360, 50);
+                exit = new Exit(360, cvsHeight-50);
 
-                holes.push(new Hole(60, 890));
-                holes.push(new Hole(60, 1070));
-                movingHoles.push(new MovingHole(200,200,40,'red', 3,0,20,400));
+                movingHoles.push(new MovingHole(150, 150, 5, 0, 50, 400));
+                movingHoles.push(new MovingHole(111, 245, -6, 0, 50, 670));
+                movingHoles.push(new MovingHole(90, 340, 7, 0, 50, 670));
+                movingHoles.push(new MovingHole(444, 435, 13, 0, 50, 670));
+                movingHoles.push(new MovingHole(500, 530, -10, 0, 50, 670));
+                movingHoles.push(new MovingHole(222, 625, -6, 0, 50, 670));
+                movingHoles.push(new MovingHole(457, 720, 9, 0, 50, 670));
+                movingHoles.push(new MovingHole(333, 815, -12, 0, 50, 670));
+                movingHoles.push(new MovingHole(179, 910, 10, 0, 50, 670));
+                movingHoles.push(new MovingHole(360, 1005, 20, 0, 50, 670));
+                movingHoles.push(new MovingHole(360, 1100, -20, 0, 50, 670));
+                holes.push(new Hole(250, cvsHeight-50));
+                holes.push(new Hole(470, cvsHeight-50));
+
+                gemsToCollect = [
+                    new Gem(444, 300, gemColors.black),
+                    new Gem(125, 513, gemColors.yellow),
+                    new Gem(315, 655, gemColors.green),
+                    new Gem(60, 690, gemColors.red),
+                    new Gem(606, 760, gemColors.purple),
+                    new Gem(348, 1000, gemColors.blue)
+                ];
                 break;
         default:
-            // holes = [];
-            // player = new Ball(100, 100);
+        start = new Start(360, 50);
+        exit = new Exit(360, cvsHeight-50);
 
     }
     player = new Ball(start.posX, start.posY); //create the player
