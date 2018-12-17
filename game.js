@@ -47,6 +47,12 @@ map = new Map('wood');
 function game() {
     player.move();
     player.detectCollision();
+    movingFloors.forEach((floor) => {
+        floor.move();
+    });
+    movingFloors.forEach((floor) => {
+        floor.detectCol(player);
+    });
     if (gemsToCollect.length === 0) {
         exit.detectCollision(player);
     }
@@ -198,7 +204,6 @@ function createLevel(lvlNum) {
             start = new Start(60, 60);
             exit = new Exit(cvsWidth-60, cvsHeight-60)
             holes.push(new Hole(360, 185));
-            holes.push(new Hole(250, 505));
             holes.push(new Hole(cvsWidth-50, 934));
             holes.push(new Hole(240, 1000));
             holes.push(new Hole(355, 1165));
