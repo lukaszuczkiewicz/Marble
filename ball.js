@@ -3,7 +3,7 @@ import { beta, gamma } from './control.js';
 import Circle from './circle.js';
 
 export default class Ball extends Circle{
-    constructor(posX, posY, radius = 40, color='white') {
+    constructor(posX, posY, radius = 40, color='#ede') {
         super(posX, posY, radius, color)
         this.velocityX = 0;
         this.velocityY = 0;

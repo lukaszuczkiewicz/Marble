@@ -51,7 +51,7 @@ function game() {
         floor.move();
     });
     movingFloors.forEach((floor) => {
-        floor.detectCol(player);
+        floor.detectCollision(player);
     });
     if (gemsToCollect.length === 0) {
         exit.detectCollision(player);

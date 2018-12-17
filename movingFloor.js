@@ -22,9 +22,12 @@ export default class MovingFloor extends Rectangle{
         //     this.startY -= this.speed;
         // }
     }
-    detectCol(player) {
+    detectCollision(player) {
         if (player.posX > this.posX && player.posX < this.posX+this.width && player.posY > this.posY && player.posY < this.posY+this.height) {
-            player.posX += this.speed;
+            // player.posX += this.speed;
+            // it shouldn't be a change of position but a change of velocity
+            player.velocityX += 0.1*this.speed;
+
             // player.posY += this.speed; to fix later
         }
     }
