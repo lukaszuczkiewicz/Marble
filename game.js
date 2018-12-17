@@ -200,7 +200,7 @@ function createLevel(lvlNum) {
             break;
 
         case 4:
-            movingFloors.push(new MovingFloor(100, 800, 200, 100, 'x', -2, 0, 0));
+            movingFloors.push(new MovingFloor(200, 500, 473, 150, 'x', -12, 0, 0));
             start = new Start(60, 60);
             exit = new Exit(cvsWidth-60, cvsHeight-60)
             holes.push(new Hole(360, 185));

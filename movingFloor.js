@@ -14,9 +14,13 @@ export default class MovingFloor extends Rectangle{
         //move image
         if (this.axis === 'x') {
             this.startX -= this.speed;
-        } else if (this.axis === 'y') {
-            this.startY -= this.speed;
         }
+        if (this.startX+this.width>=movingFloorImg.width) {
+            this.startX=0;
+        }
+        // else if (this.axis === 'y') {
+        //     this.startY -= this.speed;
+        // }
     }
     detectCol(player) {
         if (player.posX > this.posX && player.posX < this.posX+this.width && player.posY > this.posY && player.posY < this.posY+this.height) {
@@ -32,4 +36,4 @@ export default class MovingFloor extends Rectangle{
 
 
 const movingFloorImg = new Image();
-movingFloorImg.src = 'img/pattern1.jpg';
+movingFloorImg.src = 'img/pattern3.gif';
