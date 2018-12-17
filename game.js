@@ -200,11 +200,14 @@ function createLevel(lvlNum) {
             break;
 
         case 4:
-            movingFloors.push(new MovingFloor(200, 500, 473, 150, 'x', -12, 0, 0));
+        let speeds = [-6, 10, -14, 18];
+        for (let i = 1; i<5; i++) {
+            movingFloors.push(new MovingFloor(123, i*230, 473, 120, 'x', speeds[i-1], 0, 0));
+        }
             start = new Start(60, 60);
-            exit = new Exit(cvsWidth-60, cvsHeight-60)
+            exit = new Exit(cvsWidth-70, 980)
             holes.push(new Hole(360, 185));
-            holes.push(new Hole(cvsWidth-50, 934));
+            holes.push(new Hole(cvsWidth-70, 890));
             holes.push(new Hole(240, 1000));
             holes.push(new Hole(355, 1165));
 
