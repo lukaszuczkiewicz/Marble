@@ -3,7 +3,7 @@ import Map from './map.js';
 import Hole from './hole.js';
 import Start from './start.js';
 import Exit from './exit.js';
-import MovingFloor from './movingFloor.js';
+import { MovingFloor, movingFloorPatterns } from './movingFloor.js';
 import MovingHole from './movingHole.js';
 import { Gem, gemColors, gemToDelete } from './gem.js';
 import {
@@ -153,7 +153,7 @@ function createLevel(lvlNum) {
     movingHoles = []; //clear moving holes from previous levels
     gemsToCollect = []; //clear gems from previous levels
     switch (lvlNum) {
-        case 1: //level 1
+        case 6: //level 1
             start = new Start(60, 60); //create the start
             exit = new Exit(cvsWidth-60, cvsHeight-60); //create the exit
             //create holes
@@ -213,7 +213,7 @@ function createLevel(lvlNum) {
         case 4: //level 4
         let speeds = [6, -10, 14, -18];
         for (let i = 1; i<5; i++) {
-            movingFloors.push(new MovingFloor(123, i*230, 473, 120, 'x', speeds[i-1], 0, 0));
+            movingFloors.push(new MovingFloor(123, i*230, 473, 120, movingFloorPatterns.pattern1, 'x', speeds[i-1], 0, 0));
         }
             start = new Start(60, 60);
             exit = new Exit(cvsWidth-60, 980);
@@ -238,38 +238,43 @@ function createLevel(lvlNum) {
             ];
             break;
 
-            case 5:
-                start = new Start(360, 50);
-                exit = new Exit(360, cvsHeight-50);
-
-                movingHoles.push(new MovingHole(150, 150, 5, 0, 50, 670));
-                movingHoles.push(new MovingHole(111, 245, -6, 0, 50, 670));
-                movingHoles.push(new MovingHole(90, 340, 7, 0, 50, 670));
-                movingHoles.push(new MovingHole(444, 435, 13, 0, 50, 670));
-                movingHoles.push(new MovingHole(500, 530, -10, 0, 50, 670));
-                movingHoles.push(new MovingHole(222, 625, -6, 0, 50, 670));
-                movingHoles.push(new MovingHole(457, 720, 9, 0, 50, 670));
-                movingHoles.push(new MovingHole(333, 815, -12, 0, 50, 670));
-                movingHoles.push(new MovingHole(179, 910, 10, 0, 50, 670));
-                movingHoles.push(new MovingHole(360, 1005, 20, 0, 50, 670));
-                movingHoles.push(new MovingHole(360, 1100, -20, 0, 50, 670));
-                holes.push(new Hole(250, cvsHeight-50));
-                holes.push(new Hole(470, cvsHeight-50));
-
-                gemsToCollect = [
-                    new Gem(300, 160, gemColors.black),
-                    new Gem(444, 300, gemColors.red),
-                    new Gem(125, 513, gemColors.yellow),
-                    new Gem(315, 655, gemColors.green),
-                    new Gem(606, 760, gemColors.purple),
-                    new Gem(348, 1000, gemColors.blue)
-                ];
-                break;
-            case 6:
+        case 5:
+            start = new Start(360, 50);
+            exit = new Exit(360, cvsHeight-50);
+            movingHoles.push(new MovingHole(150, 150, 5, 0, 50, 670));
+            movingHoles.push(new MovingHole(111, 245, -6, 0, 50, 670));
+            movingHoles.push(new MovingHole(90, 340, 7, 0, 50, 670));
+            movingHoles.push(new MovingHole(444, 435, 13, 0, 50, 670));
+            movingHoles.push(new MovingHole(500, 530, -10, 0, 50, 670));
+            movingHoles.push(new MovingHole(222, 625, -6, 0, 50, 670));
+            movingHoles.push(new MovingHole(457, 720, 9, 0, 50, 670));
+            movingHoles.push(new MovingHole(333, 815, -12, 0, 50, 670));
+            movingHoles.push(new MovingHole(179, 910, 10, 0, 50, 670));
+            movingHoles.push(new MovingHole(360, 1005, 20, 0, 50, 670));
+            movingHoles.push(new MovingHole(360, 1100, -20, 0, 50, 670));
+            holes.push(new Hole(250, cvsHeight-50));
+            holes.push(new Hole(470, cvsHeight-50));
+            gemsToCollect = [
+                new Gem(300, 160, gemColors.black),
+                new Gem(444, 300, gemColors.red),
+                new Gem(125, 513, gemColors.yellow),
+                new Gem(315, 655, gemColors.green),
+                new Gem(606, 760, gemColors.purple),
+                new Gem(348, 1000, gemColors.blue)
+            ];
+            break;
+            
+        case 1:
+            start = new Start(360, 590);
+            exit = new Exit(360, 690);
+            movingFloors.push(new MovingFloor(100, 100, 120, 500, movingFloorPatterns.pattern2, 'y', 5, 0, 0));
+            movingFloors.push(new MovingFloor(500, 100, 120, 500, movingFloorPatterns.pattern2, 'y', 5, 0, 0));
+            break;
                 
         default:
-        start = new Start(360, 50);
-        exit = new Exit(360, cvsHeight-50);
+        start = new Start(360, 600);
+        exit = new Exit(360, 680);
+
 
     }
     player = new Ball(start.posX, start.posY); //create the player

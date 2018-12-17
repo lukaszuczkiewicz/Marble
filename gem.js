@@ -40,10 +40,3 @@ gemColors.green.src = 'img/Gem-Green.png';
 gemColors.purple.src = 'img/Gem-Purple.png';
 gemColors.red.src = 'img/Gem-Red.png';
 gemColors.yellow.src = 'img/Gem-Yellow.png';
-
-
-
-
-
-// let newLista = lista.filter(isCurrent);
-// lista = newLista;
