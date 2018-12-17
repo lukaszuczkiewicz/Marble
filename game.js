@@ -242,7 +242,7 @@ function createLevel(lvlNum) {
                 start = new Start(360, 50);
                 exit = new Exit(360, cvsHeight-50);
 
-                movingHoles.push(new MovingHole(150, 150, 5, 0, 50, 400));
+                movingHoles.push(new MovingHole(150, 150, 5, 0, 50, 670));
                 movingHoles.push(new MovingHole(111, 245, -6, 0, 50, 670));
                 movingHoles.push(new MovingHole(90, 340, 7, 0, 50, 670));
                 movingHoles.push(new MovingHole(444, 435, 13, 0, 50, 670));
@@ -257,14 +257,16 @@ function createLevel(lvlNum) {
                 holes.push(new Hole(470, cvsHeight-50));
 
                 gemsToCollect = [
-                    new Gem(444, 300, gemColors.black),
+                    new Gem(300, 160, gemColors.black),
+                    new Gem(444, 300, gemColors.red),
                     new Gem(125, 513, gemColors.yellow),
                     new Gem(315, 655, gemColors.green),
-                    new Gem(60, 690, gemColors.red),
                     new Gem(606, 760, gemColors.purple),
                     new Gem(348, 1000, gemColors.blue)
                 ];
                 break;
+            case 6:
+                
         default:
         start = new Start(360, 50);
         exit = new Exit(360, cvsHeight-50);
