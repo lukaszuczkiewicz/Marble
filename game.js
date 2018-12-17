@@ -227,6 +227,11 @@ function createLevel(lvlNum) {
             ];
             break;
 
+            case 5:
+                start = new Start(60, 60);
+                exit = new Exit(cvsWidth-60, 980);
+
+                break;
         default:
             // holes = [];
             // player = new Ball(100, 100);

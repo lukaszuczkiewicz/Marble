@@ -37,7 +37,5 @@ export default class MovingFloor extends Rectangle{
     }
 }
 
-
-
 const movingFloorImg = new Image();
 movingFloorImg.src = 'img/pattern3.gif';
