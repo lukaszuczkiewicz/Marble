@@ -4,6 +4,7 @@ import Hole from './hole.js';
 import Start from './start.js';
 import Exit from './exit.js';
 import MovingFloor from './movingFloor.js';
+import MovingHole from './movingHole.js';
 import { Gem, gemColors, gemToDelete } from './gem.js';
 import {
     loadLocalStorage,
@@ -23,6 +24,8 @@ export {
     calculateTime,
     createLevel,
     currentLvl,
+    cvsWidth,
+    cvsHeight,
     gemsToCollect,
     unblockLevel,
     update,
@@ -39,7 +42,7 @@ loadLocalStorage();
 
 // LOAD LEVELS
 let player, map, currentLvl, start, exit, timeStart;
-let holes = [], gemsToCollect=[], movingFloors = [];
+let holes = [], gemsToCollect=[], movingFloors = [], movingHoles = [];
 
 //create a background for all levels
 map = new Map('wood');
@@ -54,9 +57,13 @@ function game() {
         floor.detectCollision(player);
     });
     if (gemsToCollect.length === 0) {
-        exit.detectCollision(player);
+        exit.detectCollision(player); //detect only when you collected all gems
     }
     holes.forEach((hole) => {
+        hole.isBallOver(player);
+    });
+    movingHoles.forEach((hole) => {   //test
+        hole.move();
         hole.isBallOver(player);
     });
     gemsToCollect.forEach((gem) => { //to refractor
@@ -74,7 +81,10 @@ function game() {
     start.draw();
     exit.draw();
     holes.forEach((el) => {
-        el.draw()
+        el.draw();
+    });
+    movingHoles.forEach((el) => {
+        el.draw();
     });
     gemsToCollect.forEach((el) => {
         el.draw();
@@ -140,9 +150,10 @@ function createLevel(lvlNum) {
     timeStart = Date.now(); //save starting time
     movingFloors = []; //clear moving floors from previous levels
     holes = []; //clear holes from previous levels
+    movingHoles = []; //clear moving holes from previous levels
     gemsToCollect = []; //clear gems from previous levels
     switch (lvlNum) {
-        case 1:
+        case 5: //level 1
             start = new Start(60, 60); //create the start
             exit = new Exit(cvsWidth-60, cvsHeight-60); //create the exit
             //create holes
@@ -154,7 +165,7 @@ function createLevel(lvlNum) {
             }
             break;
 
-        case 2:
+        case 2: //level 2
             start = new Start(60, 60); //create the start            
             exit = new Exit(cvsWidth-60, 60); //create the exit
             for (let i = 0; i < 10; i++) { //first column
@@ -168,7 +179,7 @@ function createLevel(lvlNum) {
             }
             break;
 
-        case 3:
+        case 3: //level 3
             start = new Start(60, 60);
             exit = new Exit(200, 60);
             holes.push(new Hole(cvsWidth-50, 150));
@@ -199,7 +210,7 @@ function createLevel(lvlNum) {
             ];
             break;
 
-        case 4:
+        case 4: //level 4
         let speeds = [6, -10, 14, -18];
         for (let i = 1; i<5; i++) {
             movingFloors.push(new MovingFloor(123, i*230, 473, 120, 'x', speeds[i-1], 0, 0));
@@ -227,10 +238,13 @@ function createLevel(lvlNum) {
             ];
             break;
 
-            case 5:
+            case 1:
                 start = new Start(60, 60);
                 exit = new Exit(cvsWidth-60, 980);
 
+                holes.push(new Hole(60, 890));
+                holes.push(new Hole(60, 1070));
+                movingHoles.push(new MovingHole(200,200,40,'red', 3,0,20,400));
                 break;
         default:
             // holes = [];

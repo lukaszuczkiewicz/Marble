@@ -17,6 +17,10 @@ export default class Hole extends Circle {
                 createLevel(currentLvl); //restart the level
         }
     }
+    moveX() { //TO DO
+        this.posX += this.speedX;
+        this.posY += this.speedY;
+    };
 
     // catchABall(player) {
     //     if (player.posX > this.posX) {
@@ -38,7 +42,4 @@ export default class Hole extends Circle {
     //     }
     // }
 
-    // move() { //TO DO
-
-    // };
 }
