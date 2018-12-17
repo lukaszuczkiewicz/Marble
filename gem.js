@@ -2,7 +2,7 @@ import {ctx, gemsToCollect} from './game.js';
 // import Rectangle from './rectangle.js';
 
 
-export {Gem, gemColors};
+export {Gem, gemColors, gemToDelete};
 
 class Gem {
     constructor(posX, posY, color, size = 52) {
@@ -14,18 +14,17 @@ class Gem {
     draw() {
         ctx.drawImage(this.color, this.posX, this.posY);
     }
-    detectCollision(player) {
-        if (player.PosX >= this.PosX && player.PosX <= this.PosX+size &&
-            player.PosY >= this.PosY && player.PosY <= this.PosY+size) {
+    detectCollecting(ballX, ballY) {
 
-                console.log('aaa');
-                // console.log(gemsToCollect);
-                // delete from gems to collect
-                // gemsToCollect.filter(this);//////////////////////////////
+        // if (ballX > this.posX && ballX < this.posX + this.size) {
+        if (ballX > this.posX && ballX < this.posX+this.size && ballY > this.posY && ballY < this.posY+this.size) {
 
-            }
+            gemToDelete = this;
+        }
     }
 }
+
+let gemToDelete = null;
 
 const gemColors = {
     black: new Image(),
@@ -42,3 +41,10 @@ gemColors.green.src = 'img/Gem-Green.png';
 gemColors.purple.src = 'img/Gem-Purple.png';
 gemColors.red.src = 'img/Gem-Red.png';
 gemColors.yellow.src = 'img/Gem-Yellow.png';
+
+
+
+
+
+// let newLista = lista.filter(isCurrent);
+// lista = newLista;

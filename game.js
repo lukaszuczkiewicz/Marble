@@ -3,7 +3,7 @@ import Map from './map.js';
 import Hole from './hole.js';
 import Start from './start.js';
 import Exit from './exit.js';
-import { Gem, gemColors } from './gem.js';
+import { Gem, gemColors, gemToDelete } from './gem.js';
 import {
     loadLocalStorage,
     isItARecord,
@@ -52,9 +52,13 @@ function game() {
     holes.forEach((hole) => {
         hole.isBallOver(player);
     });
-    gemsToCollect.forEach((el) => {
-        el.detectCollision(player);
+    gemsToCollect.forEach((gem) => { //to refractor
+        gem.detectCollecting(player.posX, player.posY);
     });
+    if (gemToDelete !== null) { //to refractor
+        console.log(gemToDelete)
+        gemsToCollect = gemsToCollect.filter((el)=>el !== gemToDelete);
+    }
     // draw functions
     map.draw();
     start.draw();
@@ -63,7 +67,7 @@ function game() {
         el.draw()
     });
     gemsToCollect.forEach((el) => {
-        el.draw()
+        el.draw();
     });
     player.draw();
 }
@@ -189,10 +193,27 @@ function createLevel(lvlNum) {
             ];
 
             player = new Ball(start.posX, start.posY);
+            console.log(gemsToCollect);
             break;
 
         default:
             // holes = [];
             // player = new Ball(100, 100);
+
     }
 }
+
+
+// let lista = [1,2,3,4,5,6,7,8,9,10];
+
+// lista.forEach((el)=> {
+//     if (el === 5) {
+//         lista = lista.filter(checking);
+//     }
+// })
+
+// function checking(el) {
+//     return el===5;
+// }
+
+// console.log(lista);
