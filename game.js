@@ -200,17 +200,31 @@ function createLevel(lvlNum) {
             break;
 
         case 4:
-        let speeds = [-6, 10, -14, 18];
+        let speeds = [6, -10, 14, -18];
         for (let i = 1; i<5; i++) {
             movingFloors.push(new MovingFloor(123, i*230, 473, 120, 'x', speeds[i-1], 0, 0));
         }
             start = new Start(60, 60);
-            exit = new Exit(cvsWidth-70, 980)
-            holes.push(new Hole(360, 185));
-            holes.push(new Hole(cvsWidth-70, 890));
-            holes.push(new Hole(240, 1000));
-            holes.push(new Hole(355, 1165));
-
+            exit = new Exit(cvsWidth-60, 980);
+            holes.push(new Hole(cvsWidth-60, 288));
+            holes.push(new Hole(60, 521));
+            for (let i = 0; i < 7; i++) {
+                if (i !== 3) {
+                    holes.push(new Hole(60+ i*100, 638)); //midle row
+                } 
+            }
+            holes.push(new Hole(60, 890));
+            holes.push(new Hole(60, 1070));
+            holes.push(new Hole(cvsWidth-60, 890));
+            holes.push(new Hole(cvsWidth-60, 1070));
+            gemsToCollect = [
+                new Gem(380, 270, gemColors.green),
+                new Gem(130, 498, gemColors.purple),
+                new Gem(336, 610, gemColors.black),
+                new Gem(60, 690, gemColors.blue),
+                new Gem(606, 760, gemColors.yellow),
+                new Gem(36, 956, gemColors.red)
+            ];
             break;
 
         default:
