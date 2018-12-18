@@ -1,13 +1,12 @@
 import Ball from './ball.js';
-import Map from './map.js';
-import Hole from './hole.js';
-import Start from './start.js';
 import Exit from './exit.js';
+import Hole from './hole.js';
+import Map from './map.js';
+import MovingHole from './movingHole.js';
 import {
     MovingFloor,
     movingFloorPatterns
 } from './movingFloor.js';
-import MovingHole from './movingHole.js';
 import {
     Gem,
     gemColors,
@@ -48,7 +47,7 @@ const cvsHeight = cvs.height;
 loadLocalStorage();
 
 // LOAD LEVELS
-let player, map, currentLvl, start, exit, timeStart;
+let player, map, currentLvl, exit, timeStart;
 let holes = [],
     gemsToCollect = [],
     movingFloors = [],
@@ -88,7 +87,7 @@ function game() {
     movingFloors.forEach((floor) => {
         floor.draw();
     });
-    start.draw();
+    // start.draw();
     exit.draw();
     holes.forEach((el) => {
         el.draw();
@@ -164,7 +163,6 @@ function createLevel(lvlNum) {
     gemsToCollect = []; //clear gems from previous levels
     switch (lvlNum) {
         case 1: //level 1
-            start = new Start(60, 60); //create the start
             exit = new Exit(cvsWidth - 60, cvsHeight - 60); //create the exit
             //create holes
             for (let i = 0; i < 5; i++) { //first row
@@ -173,10 +171,11 @@ function createLevel(lvlNum) {
             for (let i = 0; i < 5; i++) { //second row
                 holes.push(new Hole(i * 100 + 250, cvsHeight - 400));
             }
+            player = new Ball(60,60); //create the player
+
             break;
 
-        case 2: //level 2
-            start = new Start(60, 60); //create the start            
+        case 2: //level 2          
             exit = new Exit(cvsWidth - 60, 60); //create the exit
             for (let i = 0; i < 10; i++) { //first column
                 holes.push(new Hole(180, i * 100 + 60));
@@ -187,10 +186,10 @@ function createLevel(lvlNum) {
             for (let i = 0; i < 10; i++) { //third column
                 holes.push(new Hole(540, i * 100 + 60));
             }
+            player = new Ball(60,60); //create the player
             break;
 
         case 3: //level 3
-            start = new Start(60, 60);
             exit = new Exit(200, 60);
             holes.push(new Hole(cvsWidth - 50, 150));
             holes.push(new Hole(360, 185));
@@ -218,6 +217,8 @@ function createLevel(lvlNum) {
                 new Gem(210, 1100, gemColors.yellow),
                 new Gem(cvsWidth - 100, cvsHeight - 100, gemColors.black)
             ];
+            player = new Ball(60,60); //create the player
+
             break;
 
         case 4: //level 4
@@ -225,7 +226,7 @@ function createLevel(lvlNum) {
             for (let i = 1; i < 5; i++) {
                 movingFloors.push(new MovingFloor(123, i * 230, 473, 120, movingFloorPatterns.pattern1, 'x', speeds[i - 1], 0, 0));
             }
-            start = new Start(60, 60);
+            // start = new Start(60, 60);
             exit = new Exit(cvsWidth - 60, 980);
             holes.push(new Hole(cvsWidth - 60, 288));
             holes.push(new Hole(60, 521));
@@ -246,10 +247,12 @@ function createLevel(lvlNum) {
                 new Gem(606, 760, gemColors.yellow),
                 new Gem(36, 956, gemColors.red)
             ];
+            player = new Ball(60,60); //create the player
+
             break;
 
         case 5:
-            start = new Start(360, 590);
+            // start = new Start(360, 590);
             exit = new Exit(360, 690);
             movingFloors.push(new MovingFloor(100, 0, 200, 1300, movingFloorPatterns.pattern2, 'y', 10, 0, 0));
             movingFloors.push(new MovingFloor(420, 0, 200, 1300, movingFloorPatterns.pattern2, 'y', -10, 0, 0));
@@ -272,10 +275,12 @@ function createLevel(lvlNum) {
                 new Gem(542, 619, gemColors.purple),
                 new Gem(542, 1128, gemColors.blue)
             ];
+            player = new Ball(360,590); //create the player
+
             break;
 
         case 6:
-            start = new Start(360, 50);
+            // start = new Start(360, 50);
             exit = new Exit(360, cvsHeight - 50);
             movingHoles.push(new MovingHole(150, 150, 5, 0, 50, 670));
             movingHoles.push(new MovingHole(111, 245, -6, 0, 50, 670));
@@ -298,13 +303,17 @@ function createLevel(lvlNum) {
                 new Gem(606, 760, gemColors.purple),
                 new Gem(348, 1000, gemColors.blue)
             ];
+            player = new Ball(360,50); //create the player
+
             break;
 
         default:
-            start = new Start(360, 600);
-            exit = new Exit(360, 680);
+            // start = new Start(360, 600);
+            exit = new Exit(cvsWidth-50, cvsHeight-50);
+            player = new Ball(50,50); //create the player
+
 
 
     }
-    player = new Ball(start.posX, start.posY); //create the player
+    // player = new Ball(start.posX, start.posY); //create the player
 }
