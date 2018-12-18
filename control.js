@@ -124,6 +124,7 @@ document.addEventListener('click', (e) => {
 });
 
 //turn on fullscreen mode
+
 userInterface.addEventListener('click', () => {
     document.querySelector('.body').requestFullscreen(); //there is an error in a desktop browser
 });
