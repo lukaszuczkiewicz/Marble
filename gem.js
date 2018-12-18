@@ -16,10 +16,15 @@ class Gem{
     }
     detectCollecting(ballX, ballY) {
 
-        if (ballX > this.posX && ballX < this.posX+this.size && ballY > this.posY && ballY < this.posY+this.size) {
+        if (ballX > this.posX-30 && ballX < this.posX+this.size+30 && ballY > this.posY-30 && ballY < this.posY+this.size+30) {
 
             gemToDelete = this;
         }
+        //old version
+        // if (ballX > this.posX && ballX < this.posX+this.size && ballY > this.posY && ballY < this.posY+this.size) {
+
+        //     gemToDelete = this;
+        // }
     }
 }
 
