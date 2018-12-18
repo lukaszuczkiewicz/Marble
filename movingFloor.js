@@ -57,8 +57,10 @@ class MovingFloor extends Rectangle {
 
 const movingFloorPatterns = {
     pattern1: new Image(),
-    pattern2: new Image()
+    pattern2: new Image(),
+    pattern3: new Image()
 }
 
 movingFloorPatterns.pattern1.src = 'img/pattern3.gif';
 movingFloorPatterns.pattern2.src = 'img/pattern1.jpg';
+movingFloorPatterns.pattern3.src = 'img/pattern6.png';

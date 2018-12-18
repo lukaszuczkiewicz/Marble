@@ -315,26 +315,44 @@ function createLevel(lvlNum) {
                 new Gem(606, 760, gemColors.purple),
                 new Gem(348, 1000, gemColors.blue)
             ];
-            player = new Ball(360, 50); //create the player
+            player = new Ball(360, 50);
             break;
 
         case 8: //level 8
-            exit = new Exit(360, cvsHeight - 50);
+            exit = new Exit(360, 640);
+
+            movingFloors.push(new MovingFloor(0, 0, cvsWidth, 600, movingFloorPatterns.pattern3, 'y', 16, 0, 0));
+            movingFloors.push(new MovingFloor(0, 680, cvsWidth, 600, movingFloorPatterns.pattern3, 'y', -16, 0, 0));
+
+            movingHoles.push(new MovingHole(60, 100, -6, 0, 50, 670));
+            movingHoles.push(new MovingHole(560, 200, 9, 0, 50, 670));
+            movingHoles.push(new MovingHole(260, 300, -13, 0, 50, 670));
+            movingHoles.push(new MovingHole(360, 400, 16, 0, 50, 670));
+            
+            movingHoles.push(new MovingHole(360, 880, -16, 0, 50, 670));
+            movingHoles.push(new MovingHole(460, 980, 13, 0, 50, 670));
+            movingHoles.push(new MovingHole(160, 1080, -9, 0, 50, 670));
+            movingHoles.push(new MovingHole(660, 1180, 6, 0, 50, 670));
 
             gemsToCollect = [
-                new Gem(300, 160, gemColors.black),
-                new Gem(444, 300, gemColors.red),
-                new Gem(125, 513, gemColors.yellow),
-                new Gem(315, 655, gemColors.green),
-                new Gem(606, 760, gemColors.purple),
-                new Gem(348, 1000, gemColors.blue)
+                new Gem(cvsWidth-52-100, 100, gemColors.yellow),
+                new Gem(360-26, 300-26, gemColors.purple),
+                new Gem(100, 600-52-100, gemColors.green),
+                new Gem(cvsWidth-52-100, 780, gemColors.black),
+                new Gem(360-26, 980-26, gemColors.blue),
+                new Gem(100, cvsHeight-52-100, gemColors.red)
             ];
-            player = new Ball(360, 50); //create the player
+
+            player = new Ball(exit.posX, exit.posY);
+            break;
+            
+        case 9: //level 9
+            exit = new Exit(360, cvsHeight - 50);
+            player = new Ball(360, 50);
             break;
 
         default:
             exit = new Exit(cvsWidth - 50, cvsHeight - 50);
-
-            player = new Ball(50, 50); //create the player
+            player = new Ball(50, 50);
     }
 }
