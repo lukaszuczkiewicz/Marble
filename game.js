@@ -3,9 +3,16 @@ import Map from './map.js';
 import Hole from './hole.js';
 import Start from './start.js';
 import Exit from './exit.js';
-import { MovingFloor, movingFloorPatterns } from './movingFloor.js';
+import {
+    MovingFloor,
+    movingFloorPatterns
+} from './movingFloor.js';
 import MovingHole from './movingHole.js';
-import { Gem, gemColors, gemToDelete } from './gem.js';
+import {
+    Gem,
+    gemColors,
+    gemToDelete
+} from './gem.js';
 import {
     loadLocalStorage,
     isItARecord,
@@ -42,7 +49,10 @@ loadLocalStorage();
 
 // LOAD LEVELS
 let player, map, currentLvl, start, exit, timeStart;
-let holes = [], gemsToCollect=[], movingFloors = [], movingHoles = [];
+let holes = [],
+    gemsToCollect = [],
+    movingFloors = [],
+    movingHoles = [];
 
 //create a background for all levels
 map = new Map('wood');
@@ -62,7 +72,7 @@ function game() {
     holes.forEach((hole) => {
         hole.isBallOver(player);
     });
-    movingHoles.forEach((hole) => {   //test
+    movingHoles.forEach((hole) => { //test
         hole.move();
         hole.isBallOver(player);
     });
@@ -71,7 +81,7 @@ function game() {
     });
     if (gemToDelete !== null) { //to refractor
         // console.log(gemToDelete) //it logs forever after collecting the first gem
-        gemsToCollect = gemsToCollect.filter((el)=>el !== gemToDelete);
+        gemsToCollect = gemsToCollect.filter((el) => el !== gemToDelete);
     }
     // draw functions
     map.draw();
@@ -153,21 +163,21 @@ function createLevel(lvlNum) {
     movingHoles = []; //clear moving holes from previous levels
     gemsToCollect = []; //clear gems from previous levels
     switch (lvlNum) {
-        case 6: //level 1
+        case 1: //level 1
             start = new Start(60, 60); //create the start
-            exit = new Exit(cvsWidth-60, cvsHeight-60); //create the exit
+            exit = new Exit(cvsWidth - 60, cvsHeight - 60); //create the exit
             //create holes
             for (let i = 0; i < 5; i++) { //first row
                 holes.push(new Hole(i * 100 + 60, 400));
             }
             for (let i = 0; i < 5; i++) { //second row
-                holes.push(new Hole(i * 100 + 250, cvsHeight-400));
+                holes.push(new Hole(i * 100 + 250, cvsHeight - 400));
             }
             break;
 
         case 2: //level 2
             start = new Start(60, 60); //create the start            
-            exit = new Exit(cvsWidth-60, 60); //create the exit
+            exit = new Exit(cvsWidth - 60, 60); //create the exit
             for (let i = 0; i < 10; i++) { //first column
                 holes.push(new Hole(180, i * 100 + 60));
             }
@@ -182,7 +192,7 @@ function createLevel(lvlNum) {
         case 3: //level 3
             start = new Start(60, 60);
             exit = new Exit(200, 60);
-            holes.push(new Hole(cvsWidth-50, 150));
+            holes.push(new Hole(cvsWidth - 50, 150));
             holes.push(new Hole(360, 185));
             holes.push(new Hole(120, 260));
             holes.push(new Hole(555, 375));
@@ -193,41 +203,41 @@ function createLevel(lvlNum) {
             holes.push(new Hole(225, 715));
             holes.push(new Hole(600, 810));
             holes.push(new Hole(430, 850));
-            holes.push(new Hole(cvsWidth-50, 934));
+            holes.push(new Hole(cvsWidth - 50, 934));
             holes.push(new Hole(240, 1000));
             holes.push(new Hole(100, 1100));
             holes.push(new Hole(595, 1135));
             holes.push(new Hole(355, 1165));
-            holes.push(new Hole(130, cvsHeight-50));
+            holes.push(new Hole(130, cvsHeight - 50));
 
             gemsToCollect = [
-                new Gem(646,30, gemColors.green),
-                new Gem(310,440, gemColors.red),
-                new Gem(115,720, gemColors.purple),
-                new Gem(540,880, gemColors.blue),
-                new Gem(210,1100, gemColors.yellow),
-                new Gem(cvsWidth-100,cvsHeight-100, gemColors.black)
+                new Gem(646, 30, gemColors.green),
+                new Gem(310, 440, gemColors.red),
+                new Gem(115, 720, gemColors.purple),
+                new Gem(540, 880, gemColors.blue),
+                new Gem(210, 1100, gemColors.yellow),
+                new Gem(cvsWidth - 100, cvsHeight - 100, gemColors.black)
             ];
             break;
 
         case 4: //level 4
-        let speeds = [6, -10, 14, -18];
-        for (let i = 1; i<5; i++) {
-            movingFloors.push(new MovingFloor(123, i*230, 473, 120, movingFloorPatterns.pattern1, 'x', speeds[i-1], 0, 0));
-        }
+            let speeds = [6, -10, 14, -18];
+            for (let i = 1; i < 5; i++) {
+                movingFloors.push(new MovingFloor(123, i * 230, 473, 120, movingFloorPatterns.pattern1, 'x', speeds[i - 1], 0, 0));
+            }
             start = new Start(60, 60);
-            exit = new Exit(cvsWidth-60, 980);
-            holes.push(new Hole(cvsWidth-60, 288));
+            exit = new Exit(cvsWidth - 60, 980);
+            holes.push(new Hole(cvsWidth - 60, 288));
             holes.push(new Hole(60, 521));
             for (let i = 0; i < 7; i++) {
                 if (i !== 3) {
-                    holes.push(new Hole(60+ i*100, 638)); //midle row
-                } 
+                    holes.push(new Hole(60 + i * 100, 638)); //midle row
+                }
             }
             holes.push(new Hole(60, 890));
             holes.push(new Hole(60, 1070));
-            holes.push(new Hole(cvsWidth-60, 890));
-            holes.push(new Hole(cvsWidth-60, 1070));
+            holes.push(new Hole(cvsWidth - 60, 890));
+            holes.push(new Hole(cvsWidth - 60, 1070));
             gemsToCollect = [
                 new Gem(380, 270, gemColors.green),
                 new Gem(130, 498, gemColors.purple),
@@ -239,8 +249,34 @@ function createLevel(lvlNum) {
             break;
 
         case 5:
+            start = new Start(360, 590);
+            exit = new Exit(360, 690);
+            movingFloors.push(new MovingFloor(100, 0, 200, 1300, movingFloorPatterns.pattern2, 'y', 10, 0, 0));
+            movingFloors.push(new MovingFloor(420, 0, 200, 1300, movingFloorPatterns.pattern2, 'y', -10, 0, 0));
+            movingHoles.push(new MovingHole(360, 250, -16, 0, 50, 670));
+            movingHoles.push(new MovingHole(360, 340, 16, 0, 50, 670));
+            movingHoles.push(new MovingHole(360, 940, -16, 0, 50, 670));
+            movingHoles.push(new MovingHole(360, 1010, 16, 0, 50, 670));
+            holes.push(new Hole(50, 130));
+            holes.push(new Hole(50, 640));
+            holes.push(new Hole(50, cvsHeight - 130));
+            holes.push(new Hole(cvsHeight - 50, 130));
+            holes.push(new Hole(cvsHeight - 50, 640));
+            holes.push(new Hole(cvsHeight - 50, cvsHeight - 130));
+
+            gemsToCollect = [
+                new Gem(130, 100, gemColors.black),
+                new Gem(130, 619, gemColors.red),
+                new Gem(130, 1128, gemColors.yellow),
+                new Gem(542, 100, gemColors.green),
+                new Gem(542, 619, gemColors.purple),
+                new Gem(542, 1128, gemColors.blue)
+            ];
+            break;
+
+        case 6:
             start = new Start(360, 50);
-            exit = new Exit(360, cvsHeight-50);
+            exit = new Exit(360, cvsHeight - 50);
             movingHoles.push(new MovingHole(150, 150, 5, 0, 50, 670));
             movingHoles.push(new MovingHole(111, 245, -6, 0, 50, 670));
             movingHoles.push(new MovingHole(90, 340, 7, 0, 50, 670));
@@ -252,8 +288,8 @@ function createLevel(lvlNum) {
             movingHoles.push(new MovingHole(179, 910, 10, 0, 50, 670));
             movingHoles.push(new MovingHole(360, 1005, 20, 0, 50, 670));
             movingHoles.push(new MovingHole(360, 1100, -20, 0, 50, 670));
-            holes.push(new Hole(250, cvsHeight-50));
-            holes.push(new Hole(470, cvsHeight-50));
+            holes.push(new Hole(250, cvsHeight - 50));
+            holes.push(new Hole(470, cvsHeight - 50));
             gemsToCollect = [
                 new Gem(300, 160, gemColors.black),
                 new Gem(444, 300, gemColors.red),
@@ -263,17 +299,10 @@ function createLevel(lvlNum) {
                 new Gem(348, 1000, gemColors.blue)
             ];
             break;
-            
-        case 1:
-            start = new Start(360, 590);
-            exit = new Exit(360, 690);
-            movingFloors.push(new MovingFloor(100, 100, 120, 500, movingFloorPatterns.pattern2, 'y', 5, 0, 0));
-            movingFloors.push(new MovingFloor(500, 100, 120, 500, movingFloorPatterns.pattern2, 'y', 5, 0, 0));
-            break;
-                
+
         default:
-        start = new Start(360, 600);
-        exit = new Exit(360, 680);
+            start = new Start(360, 600);
+            exit = new Exit(360, 680);
 
 
     }
