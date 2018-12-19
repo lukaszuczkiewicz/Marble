@@ -39,7 +39,6 @@ map = new Map('wood');
 
 function createLevel(lvlNum) {
     currentLvl = lvlNum;
-    timeStart = Date.now(); //save starting time
     switch (lvlNum) {
         case 1:
             start = new Start(60, 60); //create the start
@@ -85,6 +84,8 @@ function createLevel(lvlNum) {
             holes = [];
             player = new Ball(100, 100, 20, "white");
     }
+    timeStart = Date.now(); //save starting time
+    update();
 }
 
 function game() {
@@ -136,18 +137,19 @@ function unblockLevel(lvlNum) {
     }
 }
 
-function win() {
-    setTimeout(() => { //setTimeot used as a hack (I could't get f. updateStop in next line to work)
+async function win() {
+    await setTimeout(() => { //setTimeot used as a hack (I could't get f. updateStop in next line to work)
         updateStop();
         const time = calculateTime();
         unblockLevel(currentLvl + 1);
-        if (isItARecord(currentLvl, time)) {
+        let isItBestRun = isItARecord(currentLvl, time);
+        if (isItBestRun) {
             // save a new time to local storage
             saveInLocalStorage(currentLvl, time);
             // update the value in record-menu (html file)
             updateRecordInBestRuns(currentLvl);
         }
-        updateYouWinWindow(currentLvl, time);
+        updateYouWinWindow(currentLvl, time, isItBestRun);
         goToYouWinWindow();
     }, 0);
 }
