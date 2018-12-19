@@ -35,20 +35,15 @@ class MovingFloor extends Rectangle {
                 this.startY = this.pattern.height - this.height;
             }
         }
-
-
     }
-    detectCollision(player) {
-
+    detectCollision(player) { //changes the ball velocity if the ball is on
         if (player.posX > this.posX && player.posX < this.posX + this.width && player.posY > this.posY && player.posY < this.posY + this.height) {
-            // it shouldn't be a change of position but a change of velocity
             if (this.axis === 'x') {
                 player.velocityX += 0.1 * this.speed;
             } else if (this.axis === 'y') {
                 player.velocityY += 0.1 * this.speed;
             }
         }
-
     }
     draw() {
         ctx.drawImage(this.pattern, this.startX, this.startY, this.width, this.height, this.posX, this.posY, this.width, this.height);
@@ -58,9 +53,13 @@ class MovingFloor extends Rectangle {
 const movingFloorPatterns = {
     pattern1: new Image(),
     pattern2: new Image(),
-    pattern3: new Image()
+    pattern3: new Image(),
+    pattern4: new Image(),
+    pattern5: new Image()
 }
 
 movingFloorPatterns.pattern1.src = 'img/pattern3.gif';
 movingFloorPatterns.pattern2.src = 'img/pattern1.jpg';
 movingFloorPatterns.pattern3.src = 'img/pattern6.png';
+movingFloorPatterns.pattern4.src = 'img/pattern7.jpg';
+movingFloorPatterns.pattern5.src = 'img/pattern8.jpg';
