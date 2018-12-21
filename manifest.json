@@ -1,7 +1,10 @@
 {
-    "short_name": "Marble Game",
     "name": "Marble Game",
-
+    "short_name": "Marble",
+    "theme-color": "red",
+    "background-color": "blue",
+    
     "display": "fullscreen",
-    "orientation": "portrait"
-  }
+    "orientation": "portrait",
+    "start_url": "https://lukaszjuggler.github.io/Marble"
+}
