@@ -1,9 +1,24 @@
 {
+    "manifest_version": 1,
+
     "name": "Marble Game",
     "short_name": "Marble",
+    "icons": [
+        {
+          "src": "/img/icon-192.png",
+          "type": "image/png",
+          "sizes": "192x192"
+        },
+        {
+          "src": "/img/icon-512.png",
+          "type": "image/png",
+          "sizes": "512x512"
+        }
+      ],
+
     "theme-color": "red",
     "background-color": "blue",
-    
+
     "display": "fullscreen",
     "orientation": "portrait",
     "start_url": "https://lukaszjuggler.github.io/Marble"
