@@ -21,5 +21,5 @@
 
     "display": "fullscreen",
     "orientation": "portrait",
-    "start_url": "https://lukaszjuggler.github.io/Marble"
+    "start_url": "index.html"
 }
