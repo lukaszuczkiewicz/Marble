@@ -5,15 +5,15 @@ import {
     updateStop
 } from "./game.js";
 
-export let beta = 1,
-    gamma = 1;
+export let beta,
+    gamma;
 export {
     goToYouWinWindow,
     updateYouWinWindow
 };
 
 // gyroscope
-window.addEventListener('deviceorientation', getOrientation);
+screen.addEventListener('deviceorientation', getOrientation);
 
 function getOrientation(event) {
     console.log("function triggered")
