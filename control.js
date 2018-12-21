@@ -16,14 +16,15 @@ export {
 window.addEventListener('deviceorientation', getOrientation);
 
 function getOrientation(event) {
+    console.log("function triggered")
     beta = event.beta;
     gamma = event.gamma;
 }
 
 // DOM elements
 const canvas = document.querySelector('.canvas');
-const mainMenu = document.querySelector('.main-menu');
 const userInterface = document.querySelector('.user-interface');
+const mainMenu = document.querySelector('.main-menu');
 const newGameBtn = document.querySelector('#new-game');
 const selectLvlBtn = document.querySelector('#select-level');
 const menuLevels = document.querySelector('.menu-levels');
@@ -35,13 +36,28 @@ const youWinLvlNum = document.querySelector('.you-win--lvl-num');
 const youWinTime = document.querySelector('.you-win--time');
 const youWinBestTime = document.querySelector('.you-win--best-run');
 
-
 //TOUCH EVENTS
-canvas.addEventListener('click', displayMainMenu);
-newGameBtn.addEventListener('click', newGame);
-returnBtn.addEventListener('click', returnToGame);
-selectLvlBtn.addEventListener('click', goToLevelMenu);
-youWinWindow.addEventListener('click', hideYouWinWindow);
+document.addEventListener('click', (e)=> {
+    if (e.target === canvas) { //game screen
+        displayMainMenu(); //pause game
+    } else if (e.target === newGameBtn) {
+        newGame();
+    } else if (e.target === selectLvlBtn){
+        goToLevelMenu();
+    } else if (e.target === yourRecordsBtn) {
+        goToRecordsMenu();
+    } else if (e.target === returnBtn) {
+        returnToGame();
+    } else {
+        if (!youWinWindow.classList.contains('hide')) { //if you win window is displayed
+            hideYouWinWindow();
+        } else if (!menuLevels.classList.contains('hide')) { //if level selection menu is displayed
+            returnToMainMenu();
+        } else if (!menuRecords.classList.contains('hide')) { //if records menu is displayed
+            returnToMainMenu();            
+        }
+    }
+});
 
 //main menu
 function displayMainMenu() {
@@ -62,7 +78,7 @@ function goToYouWinWindow() {
     updateStop(); //stop game loop (pause game)
     userInterface.classList.remove('hide'); //show UI
     mainMenu.classList.add('hide'); //hide main menu
-    youWinWindow.classList.remove('hide'); //display 
+    youWinWindow.classList.remove('hide'); //display you win window
 }
 
 function hideYouWinWindow() {
@@ -93,23 +109,20 @@ function goToLevelMenu() {
     mainMenu.classList.add('hide'); //hide main menu
     menuLevels.classList.remove('hide'); //display level-selection-menu
 }
+function goToRecordsMenu() {
+    mainMenu.classList.add('hide');
+    menuRecords.classList.remove('hide');
+}
 
 function returnToGame() {
     userInterface.classList.add('hide'); //hide UI
     update(); //continue game loop
 }
-menuLevels.addEventListener('click', () => {
+function returnToMainMenu() {
+    menuRecords.classList.add('hide');
     menuLevels.classList.add('hide');
     mainMenu.classList.remove('hide');
-});
-yourRecordsBtn.addEventListener('click', () => {
-    mainMenu.classList.add('hide');
-    menuRecords.classList.remove('hide');
-});
-menuRecords.addEventListener('click', () => {
-    menuRecords.classList.add('hide');
-    mainMenu.classList.remove('hide');
-});
+}
 
 //choose levels (level-selection-menu)
 document.addEventListener('click', (e) => {
@@ -124,7 +137,6 @@ document.addEventListener('click', (e) => {
 });
 
 //turn on fullscreen mode
-
 userInterface.addEventListener('click', () => {
     document.querySelector('.body').requestFullscreen(); //there is an error in a desktop browser
 });
