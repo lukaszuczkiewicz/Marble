@@ -13,7 +13,7 @@ export {
 };
 
 // gyroscope
-screen.addEventListener('deviceorientation', getOrientation);
+window.addEventListener('deviceorientation', getOrientation);
 
 function getOrientation(event) {
     console.log("function triggered")
