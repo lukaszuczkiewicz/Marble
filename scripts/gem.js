@@ -1,6 +1,4 @@
 import {ctx} from './game.js';
-// import Rectangle from './rectangle.js';
-
 
 export {Gem, gemColors, gemToDelete};
 
@@ -20,11 +18,6 @@ class Gem{
 
             gemToDelete = this;
         }
-        //old version
-        // if (ballX > this.posX && ballX < this.posX+this.size && ballY > this.posY && ballY < this.posY+this.size) {
-
-        //     gemToDelete = this;
-        // }
     }
 }
 

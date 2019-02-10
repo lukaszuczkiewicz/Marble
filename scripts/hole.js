@@ -17,25 +17,4 @@ export default class Hole extends Circle {
                 createLevel(currentLvl); //restart the level
         }
     }
-
-    // catchABall(player) {
-    //     if (player.posX > this.posX) {
-    //         player.posX -= 1;
-    //     } else if (player.posX < this.posX) {
-    //         player.posX += 1;
-    //     }
-    //     if (player.posY > this.posY) {
-    //         player.posY -= 1;
-    //     } else if (player.posY < this.posY) {
-    //         player.posY += 1;
-    //     }
-    //     //make a ball smaller(dropping down effect)
-    //     player.radius -= 1;
-
-    //     if (Math.abs(player.posX - this.posX) < 5 && Math.abs(player.posY - this.posY) < 5) {
-    //         // set current loop to main game loop
-    //         createLevel(currentLvl);
-    //     }
-    // }
-
 }
