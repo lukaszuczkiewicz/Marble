@@ -6,6 +6,8 @@ This game is designed for touch screen devices with gyroscope.
 Use touch screen to navigate in menu.
 Tilt your device to control the ball.
 Go to the orange circle to finish a level and unlock the next one.
+Avoid the black holes.
+Levels 3-9 require you to collect gems that activate the exit.
 
 ## Features
 * 9 different levels
