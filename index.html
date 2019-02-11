@@ -6,62 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Marble</title>
-    <link rel="icon" href="img/icons/favicon.png" type="image/x-icon"/>
+    <link rel="icon" href="img/icons/favicon.png" type="image/x-icon" />
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="marble.css">
+
 </head>
 
 <body class="body">
     <main class="main">
         <canvas width="720" height="1280" id="canvas" class="canvas"></canvas>
         <div class="user-interface">
-            <div class="menu-container">
-                <h1 class="game-title">MARBLE</h1>
-                <div class="main-menu">
-                    <ul>
-                        <li class="menu-btn" id="new-game">new game</li>
-                        <li class="menu-btn" id="select-level">select level</li>
-                        <li class="menu-btn" id="your-records">your records</li>
-                    </ul>
-                    <button class="return-btn hide">RETURN</button>
-                </div>
-                <div class="menu-levels hide">
-                    <h2 class="subtitle">Select a level</h2>
-                    <ul class="flex-wrap">
-                        <li data-num="1" class="lvl-1 goto-lvl">1</li>
-                        <li data-num="2" class="lvl-2 goto-lvl blocked">2</li>
-                        <li data-num="3" class="lvl-3 goto-lvl blocked">3</li>
-                        <li data-num="4" class="lvl-4 goto-lvl blocked">4</li>
-                        <li data-num="5" class="lvl-5 goto-lvl blocked">5</li>
-                        <li data-num="6" class="lvl-6 goto-lvl blocked">6</li>
-                        <li data-num="7" class="lvl-7 goto-lvl blocked">7</li>
-                        <li data-num="8" class="lvl-8 goto-lvl blocked">8</li>
-                        <li data-num="9" class="lvl-9 goto-lvl blocked">9</li>
-                    </ul>
-                </div>
-                <div class="menu-records hide">
-                    <h2 class="subtitle">The best runs</h2>
-                    <ol>
-                        <li><span class="record-name">level 1</span><span class="record-val record-lvl-1">---</span></li>
-                        <li><span class="record-name">level 2</span><span class="record-val record-lvl-2">---</span></li>
-                        <li><span class="record-name">level 3</span><span class="record-val record-lvl-3">---</span></li>
-                        <li><span class="record-name">level 4</span><span class="record-val record-lvl-4">---</span></li>
-                        <li><span class="record-name">level 5</span><span class="record-val record-lvl-5">---</span></li>
-                        <li><span class="record-name">level 6</span><span class="record-val record-lvl-6">---</span></li>
-                        <li><span class="record-name">level 7</span><span class="record-val record-lvl-7">---</span></li>
-                        <li><span class="record-name">level 8</span><span class="record-val record-lvl-8">---</span></li>
-                        <li><span class="record-name">level 9</span><span class="record-val record-lvl-9">---</span></li>
-                    </ol>
-                    <p>Tap the screen to return</p>
-                </div>
-                <div class="you-win--window hide">
-                    <h2 class="subtitle">Congratulations!</h2>
-                    <p>You completed <span class="color-1">level</span> <span class="color-1 you-win--lvl-num"></span>.</p>
-                    <h2>It took <span class="color-1 you-win--time"></span> s.</h2>
-                    <p class="you-win--best-run"></p>
-                    <p class="margin-top">Tap the screen to continue</p>
-                </div>
+            <h1 class="game-title">MARBLE</h1>
+            <div class="main-menu">
+                <ul>
+                    <li class="menu-btn" id="new-game">new game</li>
+                    <li class="menu-btn" id="select-level">select level</li>
+                    <li class="menu-btn" id="your-records">your records</li>
+                </ul>
+                <button class="return-btn hide">RETURN</button>
+            </div>
+            <div class="menu-levels hide">
+                <h2 class="subtitle">Select a level</h2>
+                <ul class="levels">
+                    <li data-num="1" class="lvl-1 goto-lvl">1</li>
+                    <li data-num="2" class="lvl-2 goto-lvl blocked">2</li>
+                    <li data-num="3" class="lvl-3 goto-lvl blocked">3</li>
+                    <li data-num="4" class="lvl-4 goto-lvl blocked">4</li>
+                    <li data-num="5" class="lvl-5 goto-lvl blocked">5</li>
+                    <li data-num="6" class="lvl-6 goto-lvl blocked">6</li>
+                    <li data-num="7" class="lvl-7 goto-lvl blocked">7</li>
+                    <li data-num="8" class="lvl-8 goto-lvl blocked">8</li>
+                    <li data-num="9" class="lvl-9 goto-lvl blocked">9</li>
+                </ul>
+            </div>
+            <div class="menu-records hide">
+                <h2 class="subtitle">The best runs</h2>
+                <ol class="records">
+                    <li><span class="record-name">level 1</span><span class="record-val record-lvl-1">---</span></li>
+                    <li><span class="record-name">level 2</span><span class="record-val record-lvl-2">---</span></li>
+                    <li><span class="record-name">level 3</span><span class="record-val record-lvl-3">---</span></li>
+                    <li><span class="record-name">level 4</span><span class="record-val record-lvl-4">---</span></li>
+                    <li><span class="record-name">level 5</span><span class="record-val record-lvl-5">---</span></li>
+                    <li><span class="record-name">level 6</span><span class="record-val record-lvl-6">---</span></li>
+                    <li><span class="record-name">level 7</span><span class="record-val record-lvl-7">---</span></li>
+                    <li><span class="record-name">level 8</span><span class="record-val record-lvl-8">---</span></li>
+                    <li><span class="record-name">level 9</span><span class="record-val record-lvl-9">---</span></li>
+                </ol>
+                <p class="tap-screen">Tap the screen to return</p>
+            </div>
+            <div class="you-win--window hide">
+                <h2 class="subtitle">Congratulations!</h2>
+                <p>You completed <span class="color-1">level</span> <span class="color-1 you-win--lvl-num"></span>.</p>
+                <h2>It took <span class="color-1 you-win--time"></span> s.</h2>
+                <p class="you-win--best-run"></p>
+                <p class="tap-screen">Tap the screen to continue</p>
             </div>
         </div>
     </main>
