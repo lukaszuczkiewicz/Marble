@@ -92,7 +92,7 @@
     font-family: 'Bungee', cursive;
 }
 .tap-screen {
-    margin-top: 14vh;
+    margin-top: 20vh;
     font-size: 3vh;
 }
 .color-1 {
@@ -102,7 +102,13 @@
 .hide {
     display: none;
 }
-.you-win--window p,
+
 .you-win--window h2 {
-    font-size: 2vh;
+    font-size: 4vh;
+}
+.you-win--window p {
+    font-size: 3vh;
+}
+.tap-screen--congrats {
+    margin-top: 36vh;
 }
