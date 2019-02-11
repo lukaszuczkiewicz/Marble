@@ -6,6 +6,8 @@
     list-style: none;
     text-align: center;
     user-select: none;
+    line-height: 1.4em;
+    vertical-align: baseline;
 }
 .body {
     background: #000000;
@@ -38,21 +40,21 @@
     color: rgb(255, 255, 255);
 }
 .game-title {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 60px;
+    margin-top: 9vh;
+    margin-bottom: 8vh;
+    font-size: 11vh;
     color: #9cece4;
 }
 .subtitle {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 4vh;
+    margin-bottom: 2vh;
 }
 .main-menu {
-    font-size: 30px;
+    font-size: 5vh;
 }
 .menu-btn {
     display: block;
-    padding: 0px;
+    padding: 2vh;
 }
 .menu-btn:active,
 .goto-lvl:active {
@@ -65,7 +67,7 @@
     color: #9e9e9e;
 }
 .record-name {
-    padding-right: 30px;
+    padding-right: 1vh;
 }
 .levels {
     display: grid;
@@ -73,24 +75,25 @@
     justify-content: center;
 }
 .levels li {
-    font-size: 40px;
-    padding: 0 30px;
+    font-size: 8vh;
+    padding: 3vh;
+    line-height: 1;
 }
 .records {
-    font-size: 14px;
+    font-size: 2.2vh;
 }
 .records li {
     line-height: 1.6;
 }
 .return-btn {
-    font-size: 30px;
-    padding: 0 30px;
-    margin-top: 20px;
+    font-size: 8vh;
+    padding: 1vh 5vh;
+    margin-top: 10vh;
     font-family: 'Bungee', cursive;
 }
 .tap-screen {
-    margin-top: 20px;
-    font-size: 20px;
+    margin-top: 14vh;
+    font-size: 3vh;
 }
 .color-1 {
     color: #edfd08;
@@ -101,5 +104,5 @@
 }
 .you-win--window p,
 .you-win--window h2 {
-    font-size: 20px;
+    font-size: 2vh;
 }
