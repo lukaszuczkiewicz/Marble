@@ -1,5 +1,6 @@
 # Marble
 Marble is a mobile game created in vanilla javascript
+https://lukaszuczkiewicz.github.io/Marble/
 
 ## How to play
 This game is designed for touch screen devices with gyroscope.
